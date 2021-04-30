@@ -1,3 +1,30 @@
+/*-------------------------- SIDEBAR INÍCIO --------------------------*/
+
+@media (min-width: 768px) {
+
+    .brand-pills > li > a {
+        border-top-right-radius: 0px;
+    	border-bottom-right-radius: 0px;
+    }
+    
+    li.brand-nav.active a:after{
+    	content: " ";
+    	display: block;
+    	width: 0;
+    	height: 0;
+    	border-top: 20px solid transparent;
+    	border-bottom: 20px solid transparent;
+    	border-left: 9px solid #428bca;
+    	position: absolute;
+    	top: 50%;
+    	margin-top: -20px;
+    	left: 100%;
+    	z-index: 2;
+    }
+}
+
+/*-------------------------- SIDEBAR FIM --------------------------*/
+
 body{
     font-family: Roboto, sans-serif;
     
@@ -58,4 +85,28 @@ footer{
 
 .navbar-default .navbar-nav>li>a:hover{
     background-color: #e7e7e7;
+}
+
+.badge {    
+    padding: 3px 20px;
+    font-size: 30px;    
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #777;
+    border-radius: 50px;
+    margin: 10px;
+}
+
+.box-mesa {
+    cursor:pointer;
+}
+
+.tab-pane .row .box .active div{
+    background-color: #337ab7;
+    color:#fff;
+}
+
+.tab-pane .row .active span {
+    background-color: #428bca;    
 }
