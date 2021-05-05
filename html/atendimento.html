@@ -65,27 +65,29 @@
         <div class="container" id="main-content">
             <h2 class="text-center">Novo Pedido</h2>
             <div class="row">
+                <!-- MENU LATERAL -->
                 <div class="col-sm-3 menu-lateral">
                     <ul class="nav flex-column">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Mesa <span class="cont" id="mesa-contador">1</span></a>
+                        <li class="nav-item active" id="nav-item-mesa">
+                            <a class="nav-link" href="#" onclick="navItem('mesa');">Mesa <span class="cont" id="mesa-contador">1</span></a>
                             <i class="icone fas fa-caret-right"></i>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Produto</a>
+                        <li class="nav-item" id="nav-item-produtos">
+                            <a class="nav-link" href="#" onclick="navItem('produtos');">Produtos</a>
                             <i class="icone fas fa-caret-right"></i>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Cliente</a>
+                        <li class="nav-item" id="nav-item-cliente">
+                            <a class="nav-link" href="#" onclick="navItem('cliente');">Cliente</a>
                             <i class="icone fas fa-caret-right"></i>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Confirmação</a>
+                        <li class="nav-item" id="nav-item-confirmacao">
+                            <a class="nav-link" href="#" onclick="navItem('confirmacao');">Confirmação</a>
                             <i class="icone fas fa-caret-right"></i>
                         </li>
                         <li class="nav-item last">&nbsp;</li>
                     </ul>
                 </div>
+                <!-- ####  ABA MESA  #### -->
                 <div class="col-sm-9 conteudo" id="conteudo-mesa">
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-3">
@@ -96,7 +98,7 @@
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-3">
-                            <div class="box box-mesa em-processo a-center" id="box-mesa-2" onclick="escolheMesa(2)">
+                            <div class="box box-mesa a-center em-processo" id="box-mesa-2" onclick="escolheMesa(2)">
                                 <div class="box-txt">Mesa</div>
                                 <span class="badge badge-pill badge-dark">2</span>
                                 <div class="a-center qtde">3 itens</div>
@@ -133,7 +135,16 @@
                         <div class="clearfix"></div>
                     </div>
                 </div>
-                <div class="col-sm-9 conteudo" id="conteudo-produto" style="display: none;">
+                <!-- ####  ABA PRODUTOS  #### -->
+                <div class="col-sm-9 conteudo" id="conteudo-produtos" style="display: none;">
+                    
+                </div>
+                <!-- ####  ABA CLIENTE  #### -->
+                <div class="col-sm-9 conteudo" id="conteudo-produtos" style="display: none;">
+                    
+                </div>
+                <!-- ####  ABA CONFIRMACAO  #### -->
+                <div class="col-sm-9 conteudo" id="conteudo-produtos" style="display: none;">
                     
                 </div>
                 <div class="clearfix"></div>
@@ -142,6 +153,7 @@
         <footer>
             <div class="container">
                 <small>&copy; Projeto - 2021 - Versão 1.0</small>
+                <a href="#" class="go-top"><i class="fas fa-arrow-up"></i></a>
             </div>
         </footer>
         <script type="text/javascript">
@@ -150,6 +162,13 @@
                 $('.box-mesa').removeClass('selected');
                 $('#box-mesa-'+num).addClass('selected');
                 $('#mesa-contador').html(num);
+            }
+            function navItem(item){
+                //oculta todos os conteudos, exibe apenas o conteudo do item e seleciona a navegacao do item
+                $('#main-content .conteudo').hide();
+                $('#conteudo-'+item).show();
+                $('.nav-item.active').removeClass('active');
+                $('#nav-item-'+item).addClass('active');
             }
         </script>
     </body>

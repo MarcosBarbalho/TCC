@@ -62,6 +62,19 @@ footer{
     border-top: 1px solid #ccc;
     background-color: #fff;
 }
+footer .container{position: relative;}
+footer .go-top{
+    display: none;
+    position: absolute;
+    z-index: 100;
+    right: 10px;
+    bottom: 0;
+    font-size: 30px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 0 6px;
+    
+}
 .badge {    
     padding: 3px 20px;
     font-size: 40px;    
@@ -110,6 +123,7 @@ footer{
 }
 /*media query somente para celular*/
 @media only screen and (max-width: 750px) {
-    .nav .nav-item.last{width: 100%;border-bottom: 1px solid;margin-bottom: 20px;}
+    .nav .nav-item.last{width: 100%;border-bottom: 1px solid;margin-bottom: 20px;font-size: 0;}
     .nav .nav-item{float: left;width: 50%;}
+    footer .go-top{display: block;}
 }
