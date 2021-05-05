@@ -27,8 +27,10 @@ body{
 #main-content .box{
     border-radius: 5px;
     background-color: #ccc;
-    padding: 3px;    
-    margin-bottom: 10px;    
+    /*padding: 3px;  */
+    border: 3px solid #ccc;
+    margin-bottom: 10px;   
+    cursor: pointer;
 }
 #main-content .box .box-txt{
     font-size: 25px;
@@ -43,7 +45,12 @@ body{
     color: #fff;
     background-color: #777;
 }
-
+#main-content .box.em-processo{
+    background-color: #bdffa2;
+    border-color: #bdffa2;
+}
+#main-content .box.selected,
+#main-content .box:hover{border-color: #4a4a4a;}
 footer{
     position: fixed;
     bottom: 0;
@@ -55,18 +62,54 @@ footer{
     border-top: 1px solid #ccc;
     background-color: #fff;
 }
-
-.navbar-default .navbar-nav>li>a:hover{
-    background-color: #e7e7e7;
-}
-
 .badge {    
     padding: 3px 20px;
-    font-size: 30px;    
+    font-size: 40px;    
     color: #fff;
     text-align: center;
     vertical-align: middle;
     background-color: #777;
     border-radius: 50px;
     margin: 10px;
+}
+/* NAVBAR*/
+.navbar-default .navbar-nav>li>a:hover{
+    background-color: #e7e7e7;
+}
+.nav .cont{
+    padding: 2px 8px;
+    color: #fff;
+    text-align: center;
+    background-color: #777;
+    border-radius: 20px;
+    margin-left: 15px;
+    font-size: 18px;
+}
+.nav>li>.nav-link:focus, 
+.nav>li>.nav-link:hover,
+.nav>li.active>.nav-link{
+    text-decoration: none;
+    background-color: #eee;
+}
+.nav .nav-item{position: relative;}
+.nav .nav-link{
+    color: #000;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.nav .active .icone{display: inline-block;}
+.nav .icone{
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 10px;
+    font-size: 30px;
+}
+.nav .active .nav-link{
+    font-weight: bold;
+}
+/*media query somente para celular*/
+@media only screen and (max-width: 750px) {
+    .nav .nav-item.last{width: 100%;border-bottom: 1px solid;margin-bottom: 20px;}
+    .nav .nav-item{float: left;width: 50%;}
 }
