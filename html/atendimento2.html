@@ -67,22 +67,18 @@
             <div class="row">
                 <!-- MENU LATERAL -->
                 <div class="col-sm-3 menu-lateral">
-                    <ul class="nav flex-column">
-                        <li class="nav-item active" id="nav-item-mesa">
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item brand-nav active" id="nav-item-mesa">
                             <a class="nav-link" href="#" onclick="navItem('mesa');">Mesa <span class="cont" id="mesa-contador">1</span></a>
-                            <i class="icone fas fa-caret-right"></i>
                         </li>
-                        <li class="nav-item" id="nav-item-produtos">
+                        <li class="nav-item brand-nav" id="nav-item-produtos">
                             <a class="nav-link" href="#" onclick="navItem('produtos');">Produtos</a>
-                            <i class="icone fas fa-caret-right"></i>
                         </li>
-                        <li class="nav-item" id="nav-item-cliente">
+                        <li class="nav-item brand-nav" id="nav-item-cliente">
                             <a class="nav-link" href="#" onclick="navItem('cliente');">Cliente</a>
-                            <i class="icone fas fa-caret-right"></i>
                         </li>
-                        <li class="nav-item" id="nav-item-confirmacao">
+                        <li class="nav-item brand-nav" id="nav-item-confirmacao">
                             <a class="nav-link" href="#" onclick="navItem('confirmacao');">Confirmação</a>
-                            <i class="icone fas fa-caret-right"></i>
                         </li>
                         <li class="nav-item last">&nbsp;</li>
                     </ul>
@@ -137,15 +133,132 @@
                 </div>
                 <!-- ####  ABA PRODUTOS  #### -->
                 <div class="col-sm-9 conteudo" id="conteudo-produtos" style="display: none;">
-                    
+                    <div class="panel-group" id="accordion-produtos">
+                        <!-- categoria 1 -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-produtos" href="#collapse-prod-1">
+                                        LANCHES
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse-prod-1" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <table class="simple-table table-itens">
+                                        <tbody>
+                                            <tr>
+                                                <td class="td-item">ITEM 1</td>
+                                                <td class="td-btn">
+                                                    <div class="input-group">
+                                                        <span class="input-group-btn">
+                                                            <button type="button"
+                                                                    class="quantity-left-minus btn btn-danger btn-number"
+                                                                    data-type="minus" data-field="">
+                                                                <span class="glyphicon glyphicon-minus"></span>
+                                                            </button>
+                                                        </span>
+                                                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="10"/>
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
+                                                                <span class="glyphicon glyphicon-plus"></span>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td-item">ITEM 2</td>
+                                                <td class="td-btn">
+                                                    <div class="input-group">
+                                                        <span class="input-group-btn">
+                                                            <button type="button"
+                                                                    class="quantity-left-minus btn btn-danger btn-number"
+                                                                    data-type="minus" data-field="">
+                                                                <span class="glyphicon glyphicon-minus"></span>
+                                                            </button>
+                                                        </span>
+                                                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="10"/>
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
+                                                                <span class="glyphicon glyphicon-plus"></span>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- categoria 2 -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-produtos" href="#collapse-prod-2">
+                                        BEBIDAS
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse-prod-2" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <table class="simple-table table-itens">
+                                        <tbody>
+                                            <tr>
+                                                <td class="td-item">ITEM 1</td>
+                                                <td class="td-btn">
+                                                    <div class="input-group">
+                                                        <span class="input-group-btn">
+                                                            <button type="button"
+                                                                    class="quantity-left-minus btn btn-danger btn-number"
+                                                                    data-type="minus" data-field="">
+                                                                <span class="glyphicon glyphicon-minus"></span>
+                                                            </button>
+                                                        </span>
+                                                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="10"/>
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
+                                                                <span class="glyphicon glyphicon-plus"></span>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td-item">ITEM 2</td>
+                                                <td class="td-btn">
+                                                    <div class="input-group">
+                                                        <span class="input-group-btn">
+                                                            <button type="button"
+                                                                    class="quantity-left-minus btn btn-danger btn-number"
+                                                                    data-type="minus" data-field="">
+                                                                <span class="glyphicon glyphicon-minus"></span>
+                                                            </button>
+                                                        </span>
+                                                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="10"/>
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
+                                                                <span class="glyphicon glyphicon-plus"></span>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- ####  ABA CLIENTE  #### -->
                 <div class="col-sm-9 conteudo" id="conteudo-produtos" style="display: none;">
-                    
+
                 </div>
                 <!-- ####  ABA CONFIRMACAO  #### -->
                 <div class="col-sm-9 conteudo" id="conteudo-produtos" style="display: none;">
-                    
+
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -157,18 +270,19 @@
             </div>
         </footer>
         <script type="text/javascript">
-            function escolheMesa(num){
+            function escolheMesa(num) {
                 //limpa os selected, coloca apenas no clicado e muda o contador sidebar
                 $('.box-mesa').removeClass('selected');
-                $('#box-mesa-'+num).addClass('selected');
+                $('#box-mesa-' + num).addClass('selected');
                 $('#mesa-contador').html(num);
+                navItem('produtos');
             }
-            function navItem(item){
+            function navItem(item) {
                 //oculta todos os conteudos, exibe apenas o conteudo do item e seleciona a navegacao do item
                 $('#main-content .conteudo').hide();
-                $('#conteudo-'+item).show();
+                $('#conteudo-' + item).show();
                 $('.nav-item.active').removeClass('active');
-                $('#nav-item-'+item).addClass('active');
+                $('#nav-item-' + item).addClass('active');
             }
         </script>
     </body>
