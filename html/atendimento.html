@@ -270,6 +270,19 @@
             </div>
         </footer>
         <script type="text/javascript">
+            $('.btn-number').on('click',function(){
+                var id_input = $(this).attr('data-field');
+                var qtde = parseInt($('#'+id_input).val());
+                if($(this).attr('data-type') === "minus"){
+                    qtde--;
+                }else{
+                    qtde++;
+                }
+                if(qtde < 0){
+                    qtde = 0;
+                }
+                $('#'+id_input).val(qtde);
+            });
             function escolheMesa(num) {
                 //limpa os selected, coloca apenas no clicado e muda o contador sidebar
                 $('.box-mesa').removeClass('selected');
