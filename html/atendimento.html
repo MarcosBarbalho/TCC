@@ -1,224 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<<<<<<< HEAD
-
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Atendimento</title>
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <script src="js/bootstrap.min.js"></script>
-    <link href="css/fontawesome.min.css" rel="stylesheet" />
-    <link href="css/solid.min.css" rel="stylesheet" />
-    <link href="css/projeto.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-        rel="stylesheet" />
-</head>
-
-<body class="dashboard">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Projeto</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false"><i class="fas fa-cubes"></i> Gerenciar <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li class="dropdown-header">Nav header</li>
-                            <li><a href="#">Separated link</a></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#"><i class="fas fa-user"></i> Funcionários</a></li>
-                    <li><a href="#"><i class="fas fa-book"></i> Produtos</a></li>
-                    <li><a href="#"><i class="fas fa-users"></i> Clientes</a></li>
-                    <li class="active"><a href="#"><i class="fas fa-shopping-bag"></i> Pedidos</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown-to">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false"><i class="fas fa-user"></i> Nome do Caboclo <span
-                                class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Sair</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <!--/.nav-collapse -->
-        </div>
-    </nav>
-    <div class="container" id="main-content">
-
-        <div>
-            <h2 class="text-center">Novo Pedido</h2>
-        </div>
-
-        <div role="tabpanel">
-            <div class="col-sm-3">
-                <ul class="nav nav-pills brand-pills nav-stacked" role="tablist">
-                    <li role="presentation" class="brand-nav active"><a href="#tabmesa" aria-controls="tabmesa"
-                            role="tab" data-toggle="tab">Mesa</a></li>
-                    <li role="presentation" class="brand-nav"><a href="#tabproduto" aria-controls="tabproduto"
-                            role="tab" data-toggle="tab">Produto</a></li>
-                    <li role="presentation" class="brand-nav"><a href="#tabcliente" aria-controls="tabcliente"
-                            role="tab" data-toggle="tab">Cliente</a></li>
-                    <li role="presentation" class="brand-nav"><a href="#tabconfirmar" aria-controls="tabconfirmar"
-                            role="tab" data-toggle="tab">Confirmação</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-9">
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="tabmesa">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-3">
-                                <div class="box box-1 box-mesa a-center active">
-                                    <div class="box-txt">Mesa:</div>
-                                    <span class="badge badge-pill badge-dark">1</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-3">
-                                <div class="box box-1 box-mesa a-center">
-                                    <div class="box-txt">Mesa:</div>
-                                    <span class="badge badge-pill badge-dark">2</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-3">
-                                <div class="box box-1 box-mesa a-center">
-                                    <div class="box-txt">Mesa:</div>
-                                    <span class="badge badge-pill badge-dark">3</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-3">
-                                <div class="box box-1 box-mesa a-center">
-                                    <div class="box-txt">Mesa:</div>
-                                    <span class="badge badge-pill badge-dark">4</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-3">
-                                <div class="box box-1 box-mesa a-center">
-                                    <div class="box-txt">Mesa:</div>
-                                    <span class="badge badge-pill badge-dark">5</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-3">
-                                <div class="box box-1 box-mesa a-center">
-                                    <div class="box-txt">Mesa:</div>
-                                    <span class="badge badge-pill badge-dark">6</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-3">
-                                <div class="box box-1 box-mesa a-center">
-                                    <div class="box-txt">Mesa:</div>
-                                    <span class="badge badge-pill badge-dark">7</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-3">
-                                <div class="box box-1 box-mesa a-center">
-                                    <div class="box-txt">Mesa:</div>
-                                    <span class="badge badge-pill badge-dark">8</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="tabproduto">
-                        <div class="box">
-
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="tabcliente">
-                        <p>
-                            Lorem ipsizzle dolor away amizzle, consectetuer pizzle elizzle. Nullizzle yo velizzle, check
-                            it out volutpizzle, quis, gravida vel, yo.
-                            Ma nizzle eget tortor. Sizzle eros. My shizz izzle dolizzle gizzle turpis tempizzle fo
-                            shizzle mah nizzle fo rizzle, mah home g-dizzle.
-                            Maurizzle pellentesque nibh izzle own yo'. Check it out in tortor. Pellentesque fizzle
-                            rhoncizzle nisi.
-                        </p>
-                        <p>
-                            In hac habitasse platea dictumst. Shizzlin dizzle dapibus. You son of a bizzle tellizzle
-                            urna, pretizzle fo shizzle mah nizzle fo rizzle, mah home g-dizzle,
-                            ghetto ac, check it out vitae, nunc. Shizzlin dizzle suscipizzle. Integizzle sempizzle velit
-                            sizzle dizzle.
-                        </p>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="tabconfirmar">
-                        <p>
-                            Collaboratively administrate empowered markets via plug-and-play networks.
-                            Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize
-                            customer directed convergence without
-                            revolutionary ROI.
-                        </p>
-                        <p>
-                            Efficiently unleash cross-media information without cross-media value.
-                            Quickly maximize timely deliverables for real-time schemas. Dramatically maintain
-                            clicks-and-mortar
-                            solutions without functional solutions.
-                        </p>
-                        <p>
-                            Completely synergize resource sucking relationships via premier niche markets.
-                            Professionally cultivate
-                            one-to-one customer service with robust ideas. Dynamically innovate resource-leveling
-                            customer service
-                            for state of the art customer service.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!--
-        <div id="left-bar-produto">
-            <div>
-                <h2 class="text-center">Novo Pedido</h2>
-            </div>
-            <div class="nav nav-pedido">
-                <ul class="nav flex-column col-sm-12 col-md-3">
-                    <li class="nav-item">
-                      <a class="nav-link active" href="#">Mesa</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Produto</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Cliente</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Confirmação</a>
-                    </li>
-                </ul>
-                <div class="row">
-                    <div class="col-sm-12 col-md-3">
-                        <div class="box box-1 a-center"><h3>Lanches</h3></div>
-                    </div>
-                    <div class="col-sm-12 col-md-3">
-                        <div class="box box-1 a-center"><h3>Lanches</h3></div>
-                    </div>
-                    <div class="col-sm-12 col-md-3">
-                        <div class="box box-1 a-center"><h3>Lanches</h3></div>
-                    </div>
-                    <div class="col-sm-12 col-md-3">
-                        <div class="box box-1 a-center"><h3>Lanches</h3></div>
-=======
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -286,22 +67,18 @@
             <div class="row">
                 <!-- MENU LATERAL -->
                 <div class="col-sm-3 menu-lateral">
-                    <ul class="nav flex-column">
-                        <li class="nav-item active" id="nav-item-mesa">
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item brand-nav active" id="nav-item-mesa">
                             <a class="nav-link" href="#" onclick="navItem('mesa');">Mesa <span class="cont" id="mesa-contador">1</span></a>
-                            <i class="icone fas fa-caret-right"></i>
                         </li>
-                        <li class="nav-item" id="nav-item-produtos">
+                        <li class="nav-item brand-nav" id="nav-item-produtos">
                             <a class="nav-link" href="#" onclick="navItem('produtos');">Produtos</a>
-                            <i class="icone fas fa-caret-right"></i>
                         </li>
-                        <li class="nav-item" id="nav-item-cliente">
+                        <li class="nav-item brand-nav" id="nav-item-cliente">
                             <a class="nav-link" href="#" onclick="navItem('cliente');">Cliente</a>
-                            <i class="icone fas fa-caret-right"></i>
                         </li>
-                        <li class="nav-item" id="nav-item-confirmacao">
+                        <li class="nav-item brand-nav" id="nav-item-confirmacao">
                             <a class="nav-link" href="#" onclick="navItem('confirmacao');">Confirmação</a>
-                            <i class="icone fas fa-caret-right"></i>
                         </li>
                         <li class="nav-item last">&nbsp;</li>
                     </ul>
@@ -352,20 +129,136 @@
                             </div>
                         </div>
                         <div class="clearfix"></div>
->>>>>>> 3312761fae369a57d0a91431d4b4d9876bb72968
                     </div>
                 </div>
                 <!-- ####  ABA PRODUTOS  #### -->
                 <div class="col-sm-9 conteudo" id="conteudo-produtos" style="display: none;">
-                    
+                    <div class="panel-group" id="accordion-produtos">
+                        <!-- categoria 1 -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-produtos" href="#collapse-prod-1">
+                                        LANCHES
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse-prod-1" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <table class="simple-table table-itens">
+                                        <tbody>
+                                            <tr>
+                                                <td class="td-item">ITEM 1</td>
+                                                <td class="td-btn">
+                                                    <div class="input-group">
+                                                        <span class="input-group-btn">
+                                                            <button type="button"
+                                                                    class="quantity-left-minus btn btn-danger btn-number"
+                                                                    data-type="minus" data-field="quantity-prod1-item1">
+                                                                <span class="glyphicon glyphicon-minus"></span>
+                                                            </button>
+                                                        </span>
+                                                        <input type="text" id="quantity-prod1-item1" name="quantity" class="form-control input-number" value="0"/>
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="quantity-prod1-item1">
+                                                                <span class="glyphicon glyphicon-plus"></span>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td-item">ITEM 2</td>
+                                                <td class="td-btn">
+                                                    <div class="input-group">
+                                                        <span class="input-group-btn">
+                                                            <button type="button"
+                                                                    class="quantity-left-minus btn btn-danger btn-number"
+                                                                    data-type="minus" data-field="quantity-prod1-item2">
+                                                                <span class="glyphicon glyphicon-minus"></span>
+                                                            </button>
+                                                        </span>
+                                                        <input type="text" id="quantity-prod1-item2" name="quantity" class="form-control input-number" value="0"/>
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="quantity-prod1-item2">
+                                                                <span class="glyphicon glyphicon-plus"></span>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- categoria 2 -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-produtos" href="#collapse-prod-2">
+                                        BEBIDAS
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse-prod-2" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <table class="simple-table table-itens">
+                                        <tbody>
+                                            <tr>
+                                                <td class="td-item">ITEM 1</td>
+                                                <td class="td-btn">
+                                                    <div class="input-group">
+                                                        <span class="input-group-btn">
+                                                            <button type="button"
+                                                                    class="quantity-left-minus btn btn-danger btn-number"
+                                                                    data-type="minus" data-field="quantity-prod2-item1">
+                                                                <span class="glyphicon glyphicon-minus"></span>
+                                                            </button>
+                                                        </span>
+                                                        <input type="text" id="quantity-prod2-item1" name="quantity" class="form-control input-number" value="0"/>
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="quantity-prod2-item1">
+                                                                <span class="glyphicon glyphicon-plus"></span>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td-item">ITEM 2</td>
+                                                <td class="td-btn">
+                                                    <div class="input-group">
+                                                        <span class="input-group-btn">
+                                                            <button type="button"
+                                                                    class="quantity-left-minus btn btn-danger btn-number"
+                                                                    data-type="minus" data-field="quantity-prod2-item2">
+                                                                <span class="glyphicon glyphicon-minus"></span>
+                                                            </button>
+                                                        </span>
+                                                        <input type="text" id="quantity-prod2-item2" name="quantity" class="form-control input-number" value="0"/>
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="quantity-prod2-item2">
+                                                                <span class="glyphicon glyphicon-plus"></span>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- ####  ABA CLIENTE  #### -->
                 <div class="col-sm-9 conteudo" id="conteudo-produtos" style="display: none;">
-                    
+
                 </div>
                 <!-- ####  ABA CONFIRMACAO  #### -->
                 <div class="col-sm-9 conteudo" id="conteudo-produtos" style="display: none;">
-                    
+
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -377,18 +270,19 @@
             </div>
         </footer>
         <script type="text/javascript">
-            function escolheMesa(num){
+            function escolheMesa(num) {
                 //limpa os selected, coloca apenas no clicado e muda o contador sidebar
                 $('.box-mesa').removeClass('selected');
-                $('#box-mesa-'+num).addClass('selected');
+                $('#box-mesa-' + num).addClass('selected');
                 $('#mesa-contador').html(num);
+                navItem('produtos');
             }
-            function navItem(item){
+            function navItem(item) {
                 //oculta todos os conteudos, exibe apenas o conteudo do item e seleciona a navegacao do item
                 $('#main-content .conteudo').hide();
-                $('#conteudo-'+item).show();
+                $('#conteudo-' + item).show();
                 $('.nav-item.active').removeClass('active');
-                $('#nav-item-'+item).addClass('active');
+                $('#nav-item-' + item).addClass('active');
             }
         </script>
     </body>
