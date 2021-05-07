@@ -79,7 +79,7 @@ footer .go-top{
 .navbar-default .navbar-nav>li>a:hover{
     background-color: #e7e7e7;
 }
-.badge {    
+.atendimento .badge {    
     padding: 3px 20px;
     font-size: 30px;    
     color: #fff;
@@ -155,14 +155,16 @@ footer .go-top{
     padding: 10px 0;
 }
 /*------*/
-
+.table-clientes thead .col-1{width: 160px;;font-size: 18px;}
+.table-clientes thead input{width: 100%;}
+.table-resumo th{font-size: 20px;}
 /*media query somente para celular*/
 @media only screen and (min-width: 751px) {
-    .brand-pills > li > a {
+    .atendimento .brand-pills > li > a {
         border-top-right-radius: 0px;
         border-bottom-right-radius: 0px;
     }
-    li.brand-nav.active a:after{
+    .atendimento li.brand-nav.active a:after{
     	content: " ";
     	display: block;
     	width: 0;
