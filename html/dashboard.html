@@ -1,143 +1,136 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <script src="js/bootstrap.min.js"></script>
-    <link href="css/fontawesome.min.css" rel="stylesheet" />
-    <link href="css/solid.min.css" rel="stylesheet" />
-    <link href="css/projeto.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-        rel="stylesheet" />
-</head>
-
-<body class="dashboard">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Projeto</a>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dashboard</title>
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <script src="js/bootstrap.min.js"></script>
+        <link href="css/fontawesome.min.css" rel="stylesheet" />
+        <link href="css/solid.min.css" rel="stylesheet" />
+        <link href="css/projeto.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+    </head>
+    <body class="dashboard">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                            aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Projeto</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                               aria-expanded="false"><i class="fas fa-cubes"></i> Gerenciar <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li class="dropdown-header">Nav header</li>
+                                <li><a href="#">Separated link</a></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><i class="fas fa-user"></i> Funcionários</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> Produtos</a></li>
+                        <li><a href="#"><i class="fas fa-users"></i> Clientes</a></li>
+                        <li><a href="#"><i class="fas fa-shopping-bag"></i> Pedidos</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown-to">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                               aria-expanded="false"><i class="fas fa-user"></i> Nome do Caboclo <span
+                                    class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Sair</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
             </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false"><i class="fas fa-cubes"></i> Gerenciar <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li class="dropdown-header">Nav header</li>
-                            <li><a href="#">Separated link</a></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#"><i class="fas fa-user"></i> Funcionários</a></li>
-                    <li><a href="#"><i class="fas fa-book"></i> Produtos</a></li>
-                    <li><a href="#"><i class="fas fa-users"></i> Clientes</a></li>
-                    <li><a href="#"><i class="fas fa-shopping-bag"></i> Pedidos</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown-to">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false"><i class="fas fa-user"></i> Nome do Caboclo <span
-                                class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Sair</a></li>
-                        </ul>
-                    </li>
-                </ul>
+        </nav>
+        <div class="container" id="main-content">
+            <h1><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
+            <div class="resumos">
+                <div class="row">
+                    <div class="col-sm-12 col-md-3">
+                        <div class="box box-1 a-center">
+                            <div>
+                                <i class="fas fa-user"></i>
+                                <div class="box-txt">0 funcionário(s)</div>
+                            </div>
+                            <button type="button" class="btn">Novo</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <div class="box box-2 a-center">
+                            <div>
+                                <i class="fas fa-book"></i>
+                                <div class="box-txt">0 produto(s)</div>
+                            </div>
+                            <button type="button" class="btn">Novo</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <div class="box box-3 a-center">
+                            <div>
+                                <i class="fas fa-users"></i>
+                                <div class="box-txt">0 cliente(s)</div>
+                            </div>
+                            <button type="button" class="btn">Novo</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <div class="box box-4 a-center">
+                            <div>
+                                <i class="fas fa-shopping-bag"></i>
+                                <div class="box-txt">0 pedido(s)</div>
+                            </div>
+                            <button type="button" class="btn">Novo</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!--/.nav-collapse -->
-        </div>
-    </nav>
-    <div class="container" id="main-content">
-        <h1><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
-
-        <div class="resumos">
-            <div class="row">
-                <div class="col-sm-12 col-md-3">
-                    <div class="box box-1 a-center">
-                        <div>
-                            <i class="fas fa-user"></i>
-                            <div class="box-txt">0 funcionário(s)</div>
-                        </div>
-                        <button type="button" class="btn">Novo</button>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-3">
-                    <div class="box box-2 a-center">
-                        <div>
-                            <i class="fas fa-book"></i>
-                            <div class="box-txt">0 produto(s)</div>
-                        </div>
-                        <button type="button" class="btn">Novo</button>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-3">
-                    <div class="box box-3 a-center">
-                        <div>
-                            <i class="fas fa-users"></i>
-                            <div class="box-txt">0 cliente(s)</div>
-                        </div>
-                        <button type="button" class="btn">Novo</button>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-3">
-                    <div class="box box-4 a-center">
-                        <div>
-                            <i class="fas fa-shopping-bag"></i>
-                            <div class="box-txt">0 pedido(s)</div>
-                        </div>
-                        <button type="button" class="btn">Novo</button>
-                    </div>
-                </div>
-
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">
+                    Novos pedidos
+                    <span class="badge badge-pill badge-dark">10</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    Pedidos em produção
+                    <span class="badge badge-pill badge-dark">10</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    Pedidos prontos
+                    <span class="badge badge-pill badge-dark">10</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    Pedidos suspensos
+                    <span class="badge badge-pill badge-dark">10</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    Clientes desuatalizados
+                    <span class="badge badge-pill badge-dark">10</span>
+                </a>
             </div>
         </div>
-        <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">
-                Novos pedidos
-                <span class="badge badge-pill badge-dark">10</span>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">
-                Pedidos em produção
-                <span class="badge badge-pill badge-dark">10</span>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">
-                Pedidos prontos
-                <span class="badge badge-pill badge-dark">10</span>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">
-                Pedidos suspensos
-                <span class="badge badge-pill badge-dark">10</span>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">
-                Clientes desuatalizados
-                <span class="badge badge-pill badge-dark">10</span>
-            </a>
-          </div>
-    </div>
-
-    <footer>
-        <div class="container">
-            <small>&copy; Projeto - 2021 - Versão 1.0</small>
-        </div>
-    </footer>
-</body>
-
+        <footer>
+            <div class="container">
+                <small>&copy; Projeto - 2021 - Versão 1.0</small>
+            </div>
+        </footer>
+    </body>
 </html>

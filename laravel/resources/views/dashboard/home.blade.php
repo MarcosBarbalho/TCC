@@ -1,5 +1,5 @@
-@extends('layout_geral')
-@section('content')
+@extends('layout_geral')<?php /* toda estrutura html */ ?>
+@section('content') <?php /* yeld(content) */ ?>
 <h1><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
 <div class="resumos">
     <div class="row">
