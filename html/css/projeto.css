@@ -75,6 +75,9 @@ footer .go-top{
     padding: 0 6px;
     
 }
+.pagination>li>a, .pagination>li>span {
+    position: inherit;
+}
 /* NAVBAR*/
 .navbar-default .navbar-nav>li>a:hover{
     background-color: #e7e7e7;
