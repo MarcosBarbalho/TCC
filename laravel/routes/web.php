@@ -10,3 +10,4 @@ Route::middleware([VerificaLogin::class])->group(function () {
 });
 /* rotas desprotegidas de login */
 Route::any('/login', [DashboardController::class,'login']);
+Route::post('/senha', [DashboardController::class,'senha']);
