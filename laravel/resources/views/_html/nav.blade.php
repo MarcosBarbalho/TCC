@@ -1,3 +1,4 @@
+<?php use App\Models\Usuario;?>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -34,10 +35,11 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown-to">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false"><i class="fas fa-user"></i> Nome do Caboclo <span
-                            class="caret"></span></a>
+                       aria-expanded="false"><i class="fas fa-user"></i> 
+                        {{Usuario::getSessionVar('nome')}} <span class="caret"></span>
+                    </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Sair</a></li>
+                        <li><a href="{{url('/logout')}}">Sair</a></li>
                     </ul>
                 </li>
             </ul>
