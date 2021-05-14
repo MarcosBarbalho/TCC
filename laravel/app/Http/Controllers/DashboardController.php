@@ -34,4 +34,8 @@ class DashboardController extends Controller
         Session::put('logado',null);
         return redirect('/login');
     }
+    
+    function acessoNegado(){
+        return view('dashboard.acesso-negado');
+    }
 }

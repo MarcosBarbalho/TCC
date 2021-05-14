@@ -1,4 +1,6 @@
-<?php use App\Models\Usuario;?>
+<?php 
+use App\Models\Usuario;
+?>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -9,12 +11,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Projeto</a>
+            <a class="navbar-brand" href="{{url('/')}}">Projeto</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                <li class="dropdown">
+                <li <?php echo compara_nome_rota('home') ? 'class="active"' : '';?>><a href="{{url('/')}}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li <?php echo compara_nome_rota('gerenciar') ? 'class="active"' : '';?> class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false"><i class="fas fa-cubes"></i> Gerenciar <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -27,10 +29,10 @@
                         <li><a href="#">One more separated link</a></li>
                     </ul>
                 </li>
-                <li><a href="#"><i class="fas fa-user"></i> Funcionários</a></li>
-                <li><a href="#"><i class="fas fa-book"></i> Produtos</a></li>
-                <li><a href="#"><i class="fas fa-users"></i> Clientes</a></li>
-                <li class="active"><a href="#"><i class="fas fa-shopping-bag"></i> Pedidos</a></li>
+                <li <?php echo compara_nome_rota('usuarios') ? 'class="active"' : '';?>><a href="{{url('/usuarios')}}"><i class="fas fa-user"></i> Funcionários</a></li>
+                <li <?php echo compara_nome_rota('produtos') ? 'class="active"' : '';?>><a href="#"><i class="fas fa-book"></i> Produtos</a></li>
+                <li <?php echo compara_nome_rota('clientes') ? 'class="active"' : '';?>><a href="#"><i class="fas fa-users"></i> Clientes</a></li>
+                <li <?php echo compara_nome_rota('pedidos') ? 'class="active"' : '';?>><a href="#"><i class="fas fa-shopping-bag"></i> Pedidos</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown-to">
