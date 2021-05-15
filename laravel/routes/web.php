@@ -9,7 +9,7 @@ Route::middleware([VerificaLogin::class])->group(function () {
     Route::get('/', [DashboardController::class,'home'])->name('home');
     //funcionarios
     Route::any('/usuarios', [UsuariosController::class,'index'])->name('usuarios');
-    Route::any('/usuarios/form', [UsuariosController::class,'index'])->name('usuarios-form');
+    Route::post('/usuarios/form', [UsuariosController::class,'form'])->name('usuarios-form');
 });
 /* rotas desprotegidas de login */
 Route::any('/login', [DashboardController::class,'login']);
