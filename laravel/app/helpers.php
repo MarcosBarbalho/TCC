@@ -2,6 +2,7 @@
 ## Todas as functions que servirão como Helpers ##
 
 use Illuminate\Support\Facades\DB;
+use App\Models\Usuario;
 class Helper{
     /**
     * compara nome atual da rota com a str de parametro
@@ -20,5 +21,11 @@ class Helper{
         foreach($query as $item){
             ?><option value="<?php echo $item->id;?>">- <?php echo $item->nome;?></option><?php
         }
+    }
+    static function loginTemNivel($nivel){
+        if(!is_array($nivel)){
+            $nivel = array($nivel);
+        }
+        return in_array(Usuario::getSessionVar('tipo'), $nivel);
     }
 }

@@ -15,6 +15,7 @@ use App\Models\Usuario;
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+                @if(Helper::loginTemNivel([1,2]))
                 <li <?php echo Helper::comparaNomeRota('home') ? 'class="active"' : '';?>><a href="{{url('/')}}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
                 <li <?php echo Helper::comparaNomeRota('gerenciar') ? 'class="active"' : '';?> class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -30,7 +31,7 @@ use App\Models\Usuario;
                     </ul>
                 </li>
                 <li <?php echo Helper::comparaNomeRota('usuarios') ? 'class="active"' : '';?>><a href="{{url('/usuarios')}}"><i class="fas fa-user"></i> Funcionários</a></li>
-                <li <?php echo Helper::comparaNomeRota('produtos') ? 'class="active"' : '';?>><a href="#"><i class="fas fa-book"></i> Produtos</a></li>
+                <li <?php echo Helper::comparaNomeRota('produtos') ? 'class="active"' : '';?>><a href="#"><i class="fas fa-book"></i> Produtos</a></li>@endif
                 <li <?php echo Helper::comparaNomeRota('clientes') ? 'class="active"' : '';?>><a href="#"><i class="fas fa-users"></i> Clientes</a></li>
                 <li <?php echo Helper::comparaNomeRota('pedidos') ? 'class="active"' : '';?>><a href="#"><i class="fas fa-shopping-bag"></i> Pedidos</a></li>
             </ul>

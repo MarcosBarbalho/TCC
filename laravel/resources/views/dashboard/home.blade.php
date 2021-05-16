@@ -1,6 +1,7 @@
 @extends('layout_geral')<?php /* toda estrutura html */ ?>
 @section('content') <?php /* yeld(content) */ ?>
 <h1><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
+@if(Helper::loginTemNivel([1,2]))
 <div class="resumos">
     <div class="row">
         <div class="col-sm-12 col-md-3">
@@ -63,4 +64,8 @@
         <span class="badge badge-pill badge-dark">10</span>
     </a>
 </div>
+@else
+<p>Seu usuário não possui informações para esta área.</p>
+<p>Utilize o menu ao topo para navegar.</p>
+@endif
 @endsection

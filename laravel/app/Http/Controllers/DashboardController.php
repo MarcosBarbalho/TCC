@@ -17,8 +17,12 @@ class DashboardController extends Controller
             $usuario = Usuario::where('login',$post['usuario'])->where('senha',md5($post['senha']))->first();
             if($usuario){
                 Session::put('logado',['id'=>$usuario->id,'tipo'=>$usuario->usuariotipos_id,'nome'=>$usuario->nome]);
-                //fazer: criar uma coluna de home pra colocar qual a tela inicial de cada usuario
                 $home = '/';
+                if($usuario->usuariotipos_id == 3){
+                    $home = '/';//inicial para cozinha
+                }elseif($usuario->usuariotipos_id == 4){
+                    $home = '/';//inicial para atendentes
+                }
                 return redirect($home);
             }else{
                 session()->flash('error', 'Usuário não encontrado.');
