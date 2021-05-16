@@ -26,4 +26,11 @@
         $('.nav-item.active').removeClass('active');
         $('#nav-item-' + item).addClass('active');
     }
+    //qualquer botao q tenha o atributo data-url
+    $('.btn[data-url]').on('click',function(){
+        var url = $(this).attr('data-url');
+        if(url.length > 0){
+            window.location = url;
+        }
+    });
 </script>

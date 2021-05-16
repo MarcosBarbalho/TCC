@@ -38,7 +38,7 @@ class DashboardController extends Controller
         Session::put('logado',null);
         return redirect('/login');
     }
-    
+    //apenas tela de aviso
     function acessoNegado(){
         return view('dashboard.acesso-negado');
     }

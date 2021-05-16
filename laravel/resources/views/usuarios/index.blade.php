@@ -1,11 +1,11 @@
 @extends('layout_geral')<?php /* toda estrutura html */ ?>
 @section('content') <?php /* yeld(content) */ ?>
 <h2 class="a-center">Funcionários 
-    <button type="button" onclick="modalForm(0)" class="btn btn-primary btn-success" data-title="Novo" data-toggle="modal" data-target="#modal-form">Novo</button>
+    <button type="button" onclick="modalForm(0,this)" class="btn btn-primary btn-success" data-title="Novas" data-toggle="modal" data-target="#modal-form">Novo</button>
 </h2>
 @include('_html.msg')
 <div class="table-responsive">
-    <table id="mytable" class="table table-bordred table-striped">
+    <table id="grid-usuarios" class="table table-bordred table-striped">
         <thead>
             <th>Nome</th>
             <th>Login</th>
@@ -25,7 +25,7 @@
                 <td>
                     <form action="" method="post" onsubmit="return confirm('Deseja mesmo excluir?');">
                         <input type="hidden" name="id" value="{{$item->id}}" /> @csrf 
-                        <button onclick="modalForm({{$item->id}})" data-target="#modal-form" class="btn btn-primary btn-xs" data-title="Editar" data-toggle="modal" type="button">
+                        <button onclick="modalForm({{$item->id}},this)" data-target="#modal-form" class="btn btn-primary btn-xs" data-title="Editar" data-toggle="modal" type="button">
                             <span data-placement="top" data-toggle="tooltip" title="Editar" class="glyphicon glyphicon-pencil"></span>
                         </button> 
                         <button data-placement="top" data-toggle="tooltip" title="Excluir"
@@ -37,7 +37,7 @@
             </tr>
                 <?php }
             }else{ ?>
-            <tr><td class="a-center">Nenhum registro encontrado</td></tr>
+            <tr><td colspan="9" class="a-center">Nenhum registro encontrado</td></tr>
             <?php } ?>
         </tbody>
     </table>
@@ -92,9 +92,10 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+@include('_html.js-grid')
 <script type="text/javascript">
-$("[data-toggle=tooltip]").tooltip();
-function modalForm(id){
+function modalForm(id,btn){
+    $('#modal-heading span').html($(btn).attr('data-title'));
     //zera o formulario
     $('#modal-form input[type=text]').val('');
     $('#modal-form select').val('');

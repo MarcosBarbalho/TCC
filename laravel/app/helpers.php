@@ -28,4 +28,11 @@ class Helper{
         }
         return in_array(Usuario::getSessionVar('tipo'), $nivel);
     }
+    static function valorReais($decimal,$suf=false){
+        $vr = number_format((float)$decimal,2,',','');
+        return $suf ? 'R$'.$vr : $vr;
+    }
+    static function moedaFloat($decimal){
+        return str_replace(['.',',',' ','R$'], ['','.','',''], $decimal);
+    }
 }

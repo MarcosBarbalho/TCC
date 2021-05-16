@@ -1,3 +1,6 @@
+<?php
+use App\Models\Usuario;
+?>
 @extends('layout_geral')<?php /* toda estrutura html */ ?>
 @section('content') <?php /* yeld(content) */ ?>
 <h1><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
@@ -8,9 +11,9 @@
             <div class="box box-1 a-center">
                 <div>
                     <i class="fas fa-user"></i>
-                    <div class="box-txt">0 funcionário(s)</div>
+                    <div class="box-txt">{{Usuario::count()}} funcionário(s)</div>
                 </div>
-                <button type="button" class="btn">Novo</button>
+                <button type="button" class="btn" data-url="{{route('usuarios')}}">Novo</button>
             </div>
         </div>
         <div class="col-sm-12 col-md-3">
