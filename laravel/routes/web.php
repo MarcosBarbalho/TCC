@@ -19,6 +19,9 @@ Route::middleware([VerificaLogin::class])->group(function () {
     //tipos de produtos
     Route::any('/prod-tipos', [Controllers\ProdutoTiposController::class,'index'])->name('prod-tipos');
     Route::post('/prod-tipos/form', [Controllers\ProdutoTiposController::class,'form'])->name('prod-tipos-form');
+    //atendimento e pedidos
+    Route::any('/atendimento', [Controllers\PedidosController::class,'atendimento'])->name('atendimento');
+    Route::any('/confirmado', [Controllers\PedidosController::class,'confirmado'])->name('confirmado');
     //gerenciar
     Route::any('/configs', [Controllers\DashboardController::class,'configs'])->name('configs');
 });

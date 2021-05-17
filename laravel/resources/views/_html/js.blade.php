@@ -17,6 +17,7 @@
         $('.box-mesa').removeClass('selected');
         $('#box-mesa-' + num).addClass('selected');
         $('#mesa-contador').html(num);
+        $('#conteudo-mesa').attr('data-mesa',num);
         navItem('produtos');
     }
     function navItem(item) {

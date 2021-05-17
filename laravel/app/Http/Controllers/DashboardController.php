@@ -17,7 +17,7 @@ class DashboardController extends Controller
             $post = $request->all();
             $usuario = Usuario::where('login',$post['usuario'])->where('senha',md5($post['senha']))->first();
             if($usuario){
-                Session::put('logado',['id'=>$usuario->id,'tipo'=>$usuario->usuariotipos_id,'nome'=>$usuario->nome]);
+                Session::put('logado',['id'=>$usuario->id,'tipo'=>$usuario->usuariotipos_id,'nome'=>$usuario->nome,'filiacao'=>$usuario->filiacao]);
                 $home = '/';
                 if($usuario->usuariotipos_id == 3){
                     $home = '/';//inicial para cozinha
@@ -47,10 +47,14 @@ class DashboardController extends Controller
     function configs(Request $request){
         if(\Helper::loginTemNivel([1,2])){
             if ($request->isMethod('post')) {
-                $post = $request->all();
-                foreach($post['cfg'] as $k=>$v){
-                    Config::where('chave',$k)->update(['valor'=>$v]);
-                }
+                try{
+                    $post = $request->all();
+                    foreach($post['cfg'] as $k=>$v){
+                        Config::where('chave',$k)->update(['valor'=>$v]);
+                    }
+                    session()->flash('info', 'Configurações atualizadas.');
+                } catch (Exception $ex) {}
+                
             }
             return view('dashboard.configs',['rows'=> Config::all()]);
         }else{

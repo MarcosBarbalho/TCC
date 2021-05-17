@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Usuario;
+use App\Models\Config;
 class Helper{
     /**
     * compara nome atual da rota com a str de parametro
@@ -39,5 +40,13 @@ class Helper{
         $aux = explode(" ", $data);
         $aux2 = explode('-', $aux[0]);
         return $hora ? $aux2[2].'/'.$aux2[1].'/'.$aux2[0].' '.$aux[1] : $aux2[2].'/'.$aux2[1].'/'.$aux2[0];
+    }
+    static function getConfig($chave){
+        $val = '';
+        $cfg = Config::where('chave',$chave)->first();
+        if($cfg){
+            $val = $cfg->valor;
+        }
+        return $val;
     }
 }
