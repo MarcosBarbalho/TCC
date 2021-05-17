@@ -24,6 +24,7 @@ class UsuariosController extends Controller {
                 ->join('usuariotipos', 'usuariotipos.id', '=', 'usuarios.usuariotipos_id')
                 ->join('filiais', 'filiais.id', '=', 'usuarios.filiacao')
                 ->select('usuarios.*', 'usuariotipos.nome AS tipo', 'filiais.nome AS filial')
+                ->where('usuariotipos_id', '>', 1) /*nao exibe os admin*/
                 ->orderByDesc('id')
                 ->paginate(10);
         return view('usuarios.index', ['resultado' => $query, 'itens' => $query->items()]);

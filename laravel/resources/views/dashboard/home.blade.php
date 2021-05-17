@@ -64,10 +64,6 @@ use App\Models\Cliente;
         Pedidos suspensos
         <span class="badge badge-pill badge-dark">10</span>
     </a>
-    <a href="#" class="list-group-item list-group-item-action">
-        Clientes desuatalizados
-        <span class="badge badge-pill badge-dark">10</span>
-    </a>
 </div>
 @else
 <p>Seu usuário não possui informações para esta área.</p>

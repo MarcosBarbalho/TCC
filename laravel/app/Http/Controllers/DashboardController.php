@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use App\Models\Config;
 use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
@@ -41,5 +42,19 @@ class DashboardController extends Controller
     //apenas tela de aviso
     function acessoNegado(){
         return view('dashboard.acesso-negado');
+    }
+    //tela de edicao de variaveis configuraveis
+    function configs(Request $request){
+        if(\Helper::loginTemNivel([1,2])){
+            if ($request->isMethod('post')) {
+                $post = $request->all();
+                foreach($post['cfg'] as $k=>$v){
+                    Config::where('chave',$k)->update(['valor'=>$v]);
+                }
+            }
+            return view('dashboard.configs',['rows'=> Config::all()]);
+        }else{
+            return $this->acessoNegado();
+        }
     }
 }

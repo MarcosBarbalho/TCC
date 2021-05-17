@@ -21,18 +21,20 @@ use App\Models\Usuario;
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false"><i class="fas fa-cubes"></i> Gerenciar <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
+                        <li><a href="{{route('configs')}}">Configurações</a></li>
+                        <li><a href="{{route('prod-tipos')}}">Tipos de Produtos</a></li>
                         <li><a href="#">Something else here</a></li>
                         <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
+                        <li class="dropdown-header">Relatórios</li>
                         <li><a href="#">Separated link</a></li>
                         <li><a href="#">One more separated link</a></li>
                     </ul>
                 </li>
                 <li <?php echo Helper::comparaNomeRota('usuarios') ? 'class="active"' : '';?>><a href="{{url('/usuarios')}}"><i class="fas fa-user"></i> Funcionários</a></li>
                 <li <?php echo Helper::comparaNomeRota('produtos') ? 'class="active"' : '';?>><a href="{{route('produtos')}}"><i class="fas fa-book"></i> Produtos</a></li>@endif
+                @if(Helper::loginTemNivel([1,2,4]))
                 <li <?php echo Helper::comparaNomeRota('clientes') ? 'class="active"' : '';?>><a href="{{route('clientes')}}"><i class="fas fa-users"></i> Clientes</a></li>
+                <li <?php echo Helper::comparaNomeRota('atendimento') ? 'class="active"' : '';?>><a href="#"><i class="fas fa-edit"></i> Atendimento</a></li>@endif
                 <li <?php echo Helper::comparaNomeRota('pedidos') ? 'class="active"' : '';?>><a href="#"><i class="fas fa-shopping-bag"></i> Pedidos</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

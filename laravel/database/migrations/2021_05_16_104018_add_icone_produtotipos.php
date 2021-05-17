@@ -13,7 +13,7 @@ class AddIconeProdutotipos extends Migration
      */
     public function up() {
         Schema::table('produtotipos', function ($table) {
-            $table->string('icone')->after('nome');
+            $table->string('icone')->nullable()->after('nome');
         });
     }
 
