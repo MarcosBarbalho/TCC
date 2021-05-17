@@ -32,7 +32,7 @@ use App\Models\Usuario;
                 </li>
                 <li <?php echo Helper::comparaNomeRota('usuarios') ? 'class="active"' : '';?>><a href="{{url('/usuarios')}}"><i class="fas fa-user"></i> Funcionários</a></li>
                 <li <?php echo Helper::comparaNomeRota('produtos') ? 'class="active"' : '';?>><a href="{{route('produtos')}}"><i class="fas fa-book"></i> Produtos</a></li>@endif
-                <li <?php echo Helper::comparaNomeRota('clientes') ? 'class="active"' : '';?>><a href="#"><i class="fas fa-users"></i> Clientes</a></li>
+                <li <?php echo Helper::comparaNomeRota('clientes') ? 'class="active"' : '';?>><a href="{{route('clientes')}}"><i class="fas fa-users"></i> Clientes</a></li>
                 <li <?php echo Helper::comparaNomeRota('pedidos') ? 'class="active"' : '';?>><a href="#"><i class="fas fa-shopping-bag"></i> Pedidos</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

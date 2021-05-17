@@ -29,7 +29,11 @@
                         <input type="hidden" name="id" value="{{$item->id}}" /> @csrf 
                         <button onclick="modalForm({{$item->id}},this)" data-target="#modal-form" class="btn btn-primary btn-xs" data-title="Editar" data-toggle="modal" type="button">
                             <span data-placement="top" data-toggle="tooltip" title="Editar" class="glyphicon glyphicon-pencil"></span>
-                        </button> 
+                        </button> @if($item->ativo == '1')
+                        <button data-placement="top" onclick="window.location = '{{route('produtos-status')}}?id={{$item->id}}&ativo=0';" 
+                                data-toggle="tooltip" title="Desativar" class="btn btn-warning btn-xs" type="button">
+                            <span class="glyphicon glyphicon-ban-circle" style="padding-right: 2px;"></span>
+                        </button>@endif
                         <button data-placement="top" data-toggle="tooltip" title="Excluir"
                                 class="btn btn-danger btn-xs" data-title="Excluir" type="submit">
                             <span class="glyphicon glyphicon-trash" style="padding-right: 2px;"></span>

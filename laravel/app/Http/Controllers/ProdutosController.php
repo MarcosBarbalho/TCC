@@ -90,10 +90,21 @@ class ProdutosController extends Controller
         }
     }
 
-    /* delete via post */
+    /* alterar entre ativo e inativo */
 
-    public function delete(Request $request) {
-        //
+    public function status(Request $request) {
+        $id = $request->get('id');
+        $ativo = $request->get('ativo');
+        if($id > 0){
+            try {
+                $produto = Produto::find($id);
+                if($produto){
+                    $produto->ativo = $ativo;
+                    $produto->save();
+                }
+            } catch (Exception $ex) {}
+        }
+        return redirect('produtos');
     }
 
     //----------------------------

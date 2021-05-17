@@ -1,5 +1,7 @@
 <?php
 use App\Models\Usuario;
+use App\Models\Produto;
+use App\Models\Cliente;
 ?>
 @extends('layout_geral')<?php /* toda estrutura html */ ?>
 @section('content') <?php /* yeld(content) */ ?>
@@ -20,18 +22,18 @@ use App\Models\Usuario;
             <div class="box box-2 a-center">
                 <div>
                     <i class="fas fa-book"></i>
-                    <div class="box-txt">0 produto(s)</div>
+                    <div class="box-txt">{{Produto::count()}} produto(s)</div>
                 </div>
-                <button type="button" class="btn">Novo</button>
+                <button type="button" class="btn" data-url="{{route('produtos')}}">Novo</button>
             </div>
         </div>
         <div class="col-sm-12 col-md-3">
             <div class="box box-3 a-center">
                 <div>
                     <i class="fas fa-users"></i>
-                    <div class="box-txt">0 cliente(s)</div>
+                    <div class="box-txt">{{Cliente::count()}} cliente(s)</div>
                 </div>
-                <button type="button" class="btn">Novo</button>
+                <button type="button" data-url="{{route('clientes')}}" class="btn">Novo</button>
             </div>
         </div>
         <div class="col-sm-12 col-md-3">

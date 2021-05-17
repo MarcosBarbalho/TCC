@@ -35,4 +35,9 @@ class Helper{
     static function moedaFloat($decimal){
         return str_replace(['.',',',' ','R$'], ['','.','',''], $decimal);
     }
+    static function formatarData($data,$hora=false){
+        $aux = explode(" ", $data);
+        $aux2 = explode('-', $aux[0]);
+        return $hora ? $aux2[2].'/'.$aux2[1].'/'.$aux2[0].' '.$aux[1] : $aux2[2].'/'.$aux2[1].'/'.$aux2[0];
+    }
 }
