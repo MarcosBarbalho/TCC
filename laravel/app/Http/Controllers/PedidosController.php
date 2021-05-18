@@ -95,21 +95,33 @@ class PedidosController extends Controller
         Layout::$TITLE = 'Atendimento';
         return view('pedidos.atendimento',[
             'lista_mesas' => \Helper::getConfig("lista_mesas"),
+            'pedidos_mesas' => Pedido::emPreparo(),
             'produto_tipos' => Produto::listagemTipos()
                 ]);
     }
     public function confirmado(Request $request){
         return view('pedidos.confirmado',['pedido'=>$request->get('p')]);
     }
+    
+    public function cozinha(Request $request){
+        
+    }
+    
+    public function mesaEntregue(Request $request){
+        $pedido = Pedido::find($request->get('pid'));
+        $pedido->status_id = 5;
+        $pedido->save();
+        return redirect('/atendimento');
+    }
 
     //----------------------------
     public function afterCallAction($method) {
         Layout::$CSS_CLASS = 'atendimento';
         //bloqueia todos os usuarios que nao foram tipo 1 e 2
-        $tipo = Usuario::getSessionVar('tipo');
+        /*$tipo = Usuario::getSessionVar('tipo');
         if (!in_array($tipo, [1, 2,4])) {
             return redirect('/acesso-negado');
-        }
+        }*/
         return null;
     }
 }

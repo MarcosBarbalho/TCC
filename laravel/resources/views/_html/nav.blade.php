@@ -35,7 +35,7 @@ use App\Models\Usuario;
                 @if(Helper::loginTemNivel([1,2,4]))
                 <li <?php echo Helper::comparaNomeRota('clientes') ? 'class="active"' : '';?>><a href="{{route('clientes')}}"><i class="fas fa-users"></i> Clientes</a></li>
                 <li <?php echo Helper::comparaNomeRota('atendimento') ? 'class="active"' : '';?>><a href="{{route('atendimento')}}"><i class="fas fa-edit"></i> Atendimento</a></li>@endif
-                <li <?php echo Helper::comparaNomeRota('pedidos') ? 'class="active"' : '';?>><a href="#"><i class="fas fa-shopping-bag"></i> Pedidos</a></li>
+                <li <?php echo Helper::comparaNomeRota('pedidos') ? 'class="active"' : '';?>><a href="{{route('cozinha')}}"><i class="fas fa-shopping-bag"></i> Pedidos</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown-to">

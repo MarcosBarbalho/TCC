@@ -1,6 +1,6 @@
 @extends('layout_geral')<?php /* toda estrutura html */ ?>
 @section('content') <?php /* yeld(content) */ ?>
-<h2 class="text-center">Novo Pedido</h2>
+<h2 class="text-center">Novo Pedido <i onclick="document.location.reload(true);" class="fas fa-redo" style="font-size: 24px;"></i></h2>
 @include('_html.msg')
 <div class="row">
     <!-- MENU LATERAL -->

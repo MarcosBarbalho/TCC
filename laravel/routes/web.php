@@ -23,6 +23,8 @@ Route::middleware([VerificaLogin::class])->group(function () {
     //atendimento e pedidos
     Route::any('/atendimento', [Controllers\PedidosController::class,'atendimento'])->name('atendimento');
     Route::get('/confirmado', [Controllers\PedidosController::class,'confirmado'])->name('confirmado');
+    Route::any('/cozinha', [Controllers\PedidosController::class,'cozinha'])->name('cozinha');
+    Route::get('/mesa-entregue', [Controllers\PedidosController::class,'mesaEntregue'])->name('mesa-entregue');
     //gerenciar
     Route::any('/configs', [Controllers\DashboardController::class,'configs'])->name('configs');
 });

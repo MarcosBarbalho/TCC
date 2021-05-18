@@ -11,3 +11,5 @@
 .table-resumo .acao-confirmar button{font-size: 1.4em;}
 #resumo-fiado{width: 90px;display: inline-block;}
 #pedido-obs{margin-bottom: 10px;}
+.box-mesa .mesa-entregue{visibility: hidden;width: 100%;}
+.box-mesa.em-processo .mesa-entregue{visibility: visible;}
