@@ -1,1 +1,7 @@
 #grid-produtos .inativo td{color: #888;}
+.table-clientes thead .col-1{font-weight: normal;}
+.table-clientes td{cursor: pointer;}
+#conteudo-cliente .btn-height{padding: 0px;line-height: 1em;padding: 4px 12px;}
+#conteudo-cliente .label-pesquisar{width: 100px;}
+#atendimento-cadastro-cliente{position: relative;}
+#atendimento-cadastro-cliente .overlay{display:none;position: absolute;width: 100%;height: 100%;z-index: 1;top: 0;left: 0;background-color: rgb(255 255 255 / 70%);}

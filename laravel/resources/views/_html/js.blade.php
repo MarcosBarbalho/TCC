@@ -16,7 +16,7 @@
         //limpa os selected, coloca apenas no clicado e muda o contador sidebar
         $('.box-mesa').removeClass('selected');
         $('#box-mesa-' + num).addClass('selected');
-        $('#mesa-contador').html(num);
+        $('.mesa-contador').html(num);
         $('#conteudo-mesa').attr('data-mesa',num);
         navItem('produtos');
     }

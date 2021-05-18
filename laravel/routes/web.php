@@ -16,6 +16,7 @@ Route::middleware([VerificaLogin::class])->group(function () {
     //clientes
     Route::any('/clientes', [Controllers\ClientesController::class,'index'])->name('clientes');
     Route::post('/clientes/form', [Controllers\ClientesController::class,'form'])->name('clientes-form');
+    Route::any('/clientes/atendimento', [Controllers\ClientesController::class,'atendimento'])->name('clientes-atendimento');
     //tipos de produtos
     Route::any('/prod-tipos', [Controllers\ProdutoTiposController::class,'index'])->name('prod-tipos');
     Route::post('/prod-tipos/form', [Controllers\ProdutoTiposController::class,'form'])->name('prod-tipos-form');

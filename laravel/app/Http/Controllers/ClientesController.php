@@ -56,6 +56,33 @@ class ClientesController extends Controller
             session()->flash('error', 'Não foi possível salvar o registro.');
         }
     }
+    //via GET é busca, via POST é cadastro rápido
+    public function atendimento(Request $request){
+        $resultado = array();
+        if ($request->isMethod('post')) {
+            //chega os dados, cadastra e retorna o registro
+            $nome = $request->post('nome');
+            $cpf = $request->post('cpf');
+            if($nome && $cpf){
+                $cliente = new Cliente();
+                $cliente->nome = $nome;
+                $cliente->cpf = $cpf;
+                $cliente->data_cadastro = now();
+                $cliente->save();
+                $resultado = $cliente;
+            }
+        }else{
+            //busca e retorna array de objetos
+            $termo = trim($request->get('busca'));
+            if(strlen($termo)>0){
+                $resultado = Cliente::select('*')->orderBy('nome')
+                        ->where('nome','like',"%$termo%")
+                        ->orWhere('cpf','like',"%$termo%")
+                        ->limit(10)->get();
+            }
+        }
+        return json_encode($resultado);
+    }
 
     //----------------------------
     public function afterCallAction($method) {

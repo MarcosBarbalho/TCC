@@ -7,7 +7,7 @@
     <div class="col-sm-3 menu-lateral">
         <ul class="nav nav-pills flex-column">
             <li class="nav-item brand-nav active" id="nav-item-mesa">
-                <a class="nav-link" href="javascript:" onclick="navItem('mesa');">Mesa <span class="cont" id="mesa-contador">?</span></a>
+                <a class="nav-link" href="javascript:" onclick="navItem('mesa');">Mesa <span class="cont mesa-contador">?</span></a>
             </li>
             <li class="nav-item brand-nav" id="nav-item-produtos">
                 <a class="nav-link" href="javascript:" onclick="navItem('produtos');">Produtos</a>

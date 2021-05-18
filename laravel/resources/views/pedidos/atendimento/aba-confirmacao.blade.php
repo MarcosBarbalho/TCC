@@ -2,7 +2,7 @@
     <table class="table table-resumo">
         <thead>
             <tr>
-                <th colspan="2">Resumo</th>
+                <th colspan="2">Resumo - Mesa <span style="color: #ab0000;" class="mesa-contador">?</span></th>
             </tr>
         </thead>
         <tbody>
