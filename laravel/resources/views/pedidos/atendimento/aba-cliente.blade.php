@@ -60,12 +60,16 @@
 </div>
 <script type="text/javascript">
 function clienteEx(){
-    $('#col-nome-cliente').attr('data-cliente-id','');
-    $('#col-nome-cliente').html('Visitante');
+    preencheCliente('Visitante','');
 }
 function clienteUsar(elem){
-    $('#col-nome-cliente').html($(elem).html()).attr('data-cliente-id',$(elem).attr('data-id'));
+    preencheCliente($(elem).html(),$(elem).attr('data-id'));
     $('.table-clientes tbody').hide();
+    $('#resumo-fiado').val('0');
+}
+function preencheCliente(_html,id){
+    $('#col-nome-cliente').html(_html).attr('data-cliente-id',id);
+    $('#resumo-cliente span').html(_html);
 }
 function clienteNovo(){
     $('#atendimento-cadastro-cliente').show();

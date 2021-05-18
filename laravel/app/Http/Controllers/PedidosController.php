@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use App\Models\Pedido;
+use App\Models\Pedidoitens;
 use App\Models\Layout;
 use App\Models\Produto;
 use Illuminate\Http\Request;
@@ -62,6 +63,34 @@ class PedidosController extends Controller
     public function atendimento(Request $request){
         if ($request->isMethod('post')) {
             //cria pedido e redireciona para /confirmado
+            $pedido_obj = json_decode($request->post('pedido'));
+            try{
+                $pedido = new Pedido();
+                $pedido->mesa = $pedido_obj->mesa;
+                $pedido->valor_final = $pedido_obj->total;
+                $pedido->fiado = $pedido_obj->fiado;
+                $pedido->cliente = $pedido_obj->cliente;
+                $pedido->status_id = 1;
+                $pedido->filial_id = Usuario::getSessionVar('filiacao');
+                $pedido->atendente_id = Usuario::getSessionVar('id');
+                $pedido->data_pedido = now();
+                $pedido->descricao = $pedido_obj->obs;
+                $pedido->save();
+                //pedido criado, registra-se os itens
+                foreach($pedido_obj->produtos as $item){
+                    $produto = Produto::find($item->prod);
+                    $pedido_item = new Pedidoitens();
+                    $pedido_item->produto_id = $produto->id;
+                    $pedido_item->produto_valor = $produto->valor;
+                    $pedido_item->produto_nome = $produto->nome;
+                    $pedido_item->quantidade = $item->qtde;
+                    $pedido_item->pedido_id = $pedido->id;
+                    $pedido_item->save();
+                }
+                return redirect('/confirmado?p='.$pedido->id);
+            } catch (Exception $ex) {
+                session()->flash('error', 'Não foi possível salvar o pedido.');
+            }
         }
         Layout::$TITLE = 'Atendimento';
         return view('pedidos.atendimento',[
@@ -70,7 +99,7 @@ class PedidosController extends Controller
                 ]);
     }
     public function confirmado(Request $request){
-        
+        return view('pedidos.confirmado',['pedido'=>$request->get('p')]);
     }
 
     //----------------------------

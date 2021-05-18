@@ -22,7 +22,7 @@ class DashboardController extends Controller
                 if($usuario->usuariotipos_id == 3){
                     $home = '/';//inicial para cozinha
                 }elseif($usuario->usuariotipos_id == 4){
-                    $home = '/';//inicial para atendentes
+                    $home = '/atendimento';//inicial para atendentes
                 }
                 return redirect($home);
             }else{

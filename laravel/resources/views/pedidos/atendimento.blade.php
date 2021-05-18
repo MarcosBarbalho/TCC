@@ -16,12 +16,11 @@
                 <a class="nav-link" href="javascript:" onclick="navItem('cliente');">Cliente</a>
             </li>
             <li class="nav-item brand-nav" id="nav-item-confirmacao">
-                <a class="nav-link" href="javascript:" onclick="navItem('confirmacao');">Confirmação</a>
+                <a class="nav-link" href="javascript:" onclick="navItem('confirmacao');resumirComanda();">Confirmação</a>
             </li>
             <li class="nav-item last">&nbsp;</li>
         </ul>
     </div>
-    <form action="" method="post">
     <!-- ####  ABA MESA  #### -->
     @include('pedidos.atendimento.aba-mesa')
     
@@ -33,7 +32,6 @@
     
     <!-- ####  ABA CONFIRMACAO  #### -->
     @include('pedidos.atendimento.aba-confirmacao')
-    </form>
     <div class="clearfix"></div>
 </div>
 @endsection

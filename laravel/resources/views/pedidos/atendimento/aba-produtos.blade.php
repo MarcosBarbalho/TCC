@@ -26,7 +26,7 @@
                                                 <span class="glyphicon glyphicon-minus"></span>
                                             </button>
                                         </span>
-                                        <input type="text" id="quantity-prod{{$prod->id}}-item" name="quantity" class="form-control input-number input-qtde" data-id="{{$prod->id}}" value="0"/>
+                                        <input type="text" id="quantity-prod{{$prod->id}}-item" name="quantity" class="form-control input-number input-qtde" data-id="{{$prod->id}}" data-preco="{{$prod->valor}}" value="0"/>
                                         <span class="input-group-btn">
                                             <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="quantity-prod{{$prod->id}}-item">
                                                 <span class="glyphicon glyphicon-plus"></span>
