@@ -31,4 +31,14 @@
         </tr>
     </tbody>
 </table></div>
+<script type="text/javascript">
+function refreshing(){
+    document.location.reload(false);
+}
+//da refresh a cada 5seg
+var contadorR = setInterval(refreshing,5000);
+$('.acoes a').on('click',function(){
+    clearInterval(contadorR);
+});
+</script>
 @endsection
