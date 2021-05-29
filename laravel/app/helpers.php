@@ -49,4 +49,9 @@ class Helper{
         }
         return $val;
     }
+    static function tempoEspera($from_time){
+        $from_time = strtotime($from_time);
+        $to_time = strtotime(now());
+        echo round(abs($to_time - $from_time) / 60). " min";
+    }
 }

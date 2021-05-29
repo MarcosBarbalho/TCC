@@ -13,3 +13,9 @@
 #pedido-obs{margin-bottom: 10px;}
 .box-mesa .mesa-entregue{visibility: hidden;width: 100%;}
 .box-mesa.em-processo .mesa-entregue{visibility: visible;}
+.cozinha .area-table{margin: 0 2%;}
+.cozinha .td-comanda .bg{padding: 10px;background-color: #ececec;}
+.cozinha .td-comanda .bg.bg-status-3{background-color: #fdffe0;}
+.cozinha .td-comanda .bg.bg-status-4{background-color: #bdffa2;}
+.cozinha .acoes .btn{font-weight: bold;width: 48%;}
+.cozinha .acoes .sep{width: 4%;display: inline-block;}

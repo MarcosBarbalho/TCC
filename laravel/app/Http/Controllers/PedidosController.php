@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use App\Models\Pedido;
+use App\Models\Pedidostatus;
 use App\Models\Pedidoitens;
 use App\Models\Layout;
 use App\Models\Produto;
@@ -104,12 +105,24 @@ class PedidosController extends Controller
     }
     
     public function cozinha(Request $request){
-        
+        $limite_comandas = (int)\Helper::getConfig("limite_comandas");
+        $fila = Pedido::select('id','mesa','status_id','descricao','data_pedido')
+                ->where('filial_id',Usuario::getSessionVar('filiacao'))
+                ->where('status_id','<',Pedidostatus::status_Entregue)
+                ->limit($limite_comandas)->get();
+        return view('pedidos.cozinha',['fila'=>$fila,'n_colunas'=>$limite_comandas]);
+    }
+    
+    public function cozinhaStatus(Request $request){
+        $pedido = Pedido::find($request->get('pid'));
+        $pedido->status_id = $request->get('s');
+        $pedido->save();
+        return redirect('/cozinha');
     }
     
     public function mesaEntregue(Request $request){
         $pedido = Pedido::find($request->get('pid'));
-        $pedido->status_id = 5;
+        $pedido->status_id = Pedidostatus::status_Entregue;
         $pedido->save();
         return redirect('/atendimento');
     }

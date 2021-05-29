@@ -2,6 +2,7 @@
 use App\Models\Usuario;
 use App\Models\Produto;
 use App\Models\Cliente;
+use App\Models\Pedido;
 ?>
 @extends('layout_geral')<?php /* toda estrutura html */ ?>
 @section('content') <?php /* yeld(content) */ ?>
@@ -40,9 +41,9 @@ use App\Models\Cliente;
             <div class="box box-4 a-center">
                 <div>
                     <i class="fas fa-shopping-bag"></i>
-                    <div class="box-txt">0 pedido(s)</div>
+                    <div class="box-txt">{{Pedido::count()}} pedido(s)</div>
                 </div>
-                <button type="button" class="btn">Novo</button>
+                <button type="button" data-url="{{route('pedidos')}}" class="btn">Novo</button>
             </div>
         </div>
     </div>

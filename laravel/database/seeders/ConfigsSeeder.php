@@ -24,5 +24,10 @@ class ConfigsSeeder extends Seeder
             'chave' => 'limite_comandas',
             'valor' => '4',
         ]);
+        DB::table('configs')->insert([
+            'descricao' => 'Tamanho da fonte Comandas da Cozinha',
+            'chave' => 'tamanho_fonte_cozinha',
+            'valor' => '18px',
+        ]);
     }
 }

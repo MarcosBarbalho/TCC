@@ -7,10 +7,5 @@
         <title>{{Layout::myTitle()}}</title>
         @include ('_html.head-links')
     </head>
-    <body class="cozinha">
-        <div class="a-center">
-            <img src="{{ asset('img/latorre-logo.png')}}" alt="latorrelogo" />
-        </div>
-        @yield('content')
-    </body>
+    <body class="cozinha">@yield('content')</body>
 </html>

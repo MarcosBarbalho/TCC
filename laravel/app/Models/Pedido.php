@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Pedidoitens;
 class Pedido extends Model
 {
     use HasFactory;
@@ -14,10 +15,14 @@ class Pedido extends Model
         $listagem = [];
         $consulta = Pedido::select('id','mesa','status_id')
                 ->where('filial_id',Usuario::getSessionVar('filiacao'))
-                ->whereIn('status_id',[1,3,4])->get();
+                ->whereIn('status_id',[Pedidostatus::status_Novo,Pedidostatus::status_Empreparo,Pedidostatus::status_Pronto])->get();
         foreach($consulta as $row){
             $listagem[$row->mesa] = $row;
         }
         return $listagem;
+    }
+    
+    public function itens(){
+        return $this->hasMany(Pedidoitens::class,'pedido_id');
     }
 }
