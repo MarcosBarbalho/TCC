@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\DB;
 
 //CRUD
 class UsuariosController extends Controller {
+    
+    protected $_filters = [
+        'filiacao',
+        #'usuarios.nome'=>'like',
+        'login'=>'like',
+        'usuariotipos_id'
+    ];
     /* listagem (read) se vier id via post é exclusao (delete) */
 
     public function index(Request $request) {
@@ -24,10 +31,12 @@ class UsuariosController extends Controller {
                 ->join('usuariotipos', 'usuariotipos.id', '=', 'usuarios.usuariotipos_id')
                 ->join('filiais', 'filiais.id', '=', 'usuarios.filiacao')
                 ->select('usuarios.*', 'usuariotipos.nome AS tipo', 'filiais.nome AS filial')
-                ->where('usuariotipos_id', '>', 1) /*nao exibe os admin*/
-                ->orderByDesc('id')
-                ->paginate(10);
-        return view('usuarios.index', ['resultado' => $query, 'itens' => $query->items()]);
+                ->where('usuariotipos_id', '>', 1); /*nao exibe os admin*/
+        //filtros
+        $query = $this->_filtrar($query,$request->filtro);
+        //ordenacao e paginacao
+        $query = $query->orderByDesc('id')->paginate(10);
+        return view('usuarios.index', ['resultado' => $query, 'itens' => $query->items(),'filtro'=>$request->filtro]);
     }
 
     /* form novo registro não vem id, se vier é edição

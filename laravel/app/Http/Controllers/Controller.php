@@ -8,6 +8,14 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController {
+    
+    /**
+     * 'input_name' (somente chave é igualdade)
+     * 'input_name' => 'tipo_where'
+     * tipos: '=','<>','>','>=','<','<=','like','%like','like%'
+     * @var array 
+     */
+    protected $_filters = array();
 
     use AuthorizesRequests,DispatchesJobs,ValidatesRequests;
     
@@ -26,4 +34,26 @@ class Controller extends BaseController {
      * @return mixed
      */
     public function afterCallAction($method){return null;}
+    
+    protected function _filtrar($query,$req_filtro=array()){
+        foreach($this->_filters as $name => $tipo){
+            if(is_int($name) && isset($req_filtro[$tipo]) && strlen($req_filtro[$tipo])){
+                //default '=' sem chave=>valor
+                $query = $query->where($tipo,trim($req_filtro[$tipo]));
+            }elseif(isset($req_filtro[$name]) && trim($req_filtro[$name])){
+                $valor = trim($req_filtro[$name]);
+                //seguindo chave=>valor
+                if($tipo === 'like'){
+                    $query = $query->where($name,'like',"%$valor%");
+                }elseif($tipo === 'like%'){
+                    $query = $query->where($name,'like',"$valor%");
+                }elseif($tipo === '%like'){
+                    $query = $query->where($name,'like',"%$valor");
+                }else{
+                    $query = $query->where($name,$tipo,$valor);
+                }
+            }
+        }
+        return $query;
+    }
 }

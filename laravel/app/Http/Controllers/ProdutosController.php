@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class ProdutosController extends Controller
 {
+    protected $_filters = [
+        'produtos.nome'=>'like',
+        'ativo',
+        'produtotipo_id'
+    ];
     /* listagem (read) se vier id via post é exclusao (delete) */
 
     public function index(Request $request) {
@@ -24,12 +29,15 @@ class ProdutosController extends Controller
         $query = DB::table('produtos')
                 ->join('produtotipos', 'produtotipos.id', '=', 'produtos.produtotipo_id')
                 ->join('filiais', 'filiais.id', '=', 'produtos.filial_id')
-                ->select('produtos.*', 'produtotipos.nome AS categoria', 'filiais.nome AS filial')
-                ->orderByDesc('ativo')
+                ->select('produtos.*', 'produtotipos.nome AS categoria', 'filiais.nome AS filial');
+        //filtros
+        $query = $this->_filtrar($query,$request->filtro);
+        //ordenacao e paginacao
+        $query = $query->orderByDesc('ativo')
                 ->orderBy('filial_id')
                 ->orderBy('nome')
                 ->paginate(16);
-        return view('produtos.index', ['resultado' => $query, 'itens' => $query->items()]);
+        return view('produtos.index', ['resultado' => $query, 'itens' => $query->items(),'filtro'=>$request->filtro]);
     }
 
     /* form novo registro não vem id, se vier é edição

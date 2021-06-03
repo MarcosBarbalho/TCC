@@ -4,6 +4,7 @@
     <button type="button" onclick="modalForm(0,this)" class="btn btn-primary btn-success" data-title="Novas" data-toggle="modal" data-target="#modal-form">Novo</button>
 </h2>
 @include('_html.msg')
+@include('usuarios.filtro')
 <div class="table-responsive">
     <table id="grid-usuarios" class="table table-bordred table-striped">
         <thead>
@@ -42,8 +43,8 @@
         </tbody>
     </table>
     <div class="clearfix"></div>
-    <div class="a-right">
-        {{ $resultado->links('pagination::bootstrap-4') }}
+    <div class="a-right"> 
+        {{ $resultado->appends(request()->input())->links('pagination::bootstrap-4') }}
     </div>
 </div>
 <!-- modal form -->

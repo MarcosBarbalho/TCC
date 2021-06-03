@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class ClientesController extends Controller
 {
+    protected $_filters = [
+        'nome'=>'like',
+        'cpf'=>'like'
+    ];
     /* listagem (read) se vier id via post é exclusao (delete) */
 
     public function index(Request $request) {
@@ -20,10 +24,12 @@ class ClientesController extends Controller
                 session()->flash('error', 'Não foi possível excluir o registro.');
             }
         }
-        $query = Cliente::select('*')
-                ->orderBy('nome')
-                ->paginate(16);
-        return view('clientes.index', ['resultado' => $query, 'itens' => $query->items()]);
+        $query = Cliente::select('*');
+        //filtros
+        $query = $this->_filtrar($query,$request->filtro);
+        //ordenacao e paginacao
+        $query = $query->orderBy('nome')->paginate(16);
+        return view('clientes.index', ['resultado' => $query, 'itens' => $query->items(),'filtro'=>$request->filtro]);
     }
 
     /* form novo registro não vem id, se vier é edição

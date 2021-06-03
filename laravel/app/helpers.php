@@ -17,10 +17,14 @@ class Helper{
      * pega tabela e faz foreach de options html com id e nome
      * @param string $tabela
      */
-    static function formOptions($tabela){
-        $query = DB::table($tabela)->orderBy('nome')->get();
+    static function formOptions($tabela,$valor=null){
+        if($tabela == 'usuariotipos'){ /*nao exibe os usuarios root*/
+            $query = DB::table($tabela)->where('id','>',1)->orderBy('nome')->get();
+        }else{
+            $query = DB::table($tabela)->orderBy('nome')->get();
+        }
         foreach($query as $item){
-            ?><option value="<?php echo $item->id;?>">- <?php echo $item->nome;?></option><?php
+            ?><option <?php echo ($valor == $item->id) ? 'selected' : '';?> value="<?php echo $item->id;?>">- <?php echo $item->nome;?></option><?php
         }
     }
     static function loginTemNivel($nivel){
@@ -49,9 +53,16 @@ class Helper{
         }
         return $val;
     }
-    static function tempoEspera($from_time){
+    static function tempoEspera($from_time,$horas=true){
         $from_time = strtotime($from_time);
         $to_time = strtotime(now());
-        echo round(abs($to_time - $from_time) / 60). " min";
+        $minutos = round(abs($to_time - $from_time) / 60);
+        if($horas && $minutos > 60){ //mostrar horas
+            $tmp = $minutos / 60;
+            $hrs = floor($tmp);
+            $mn = round(($tmp-$hrs)*60);
+            return "{$hrs}h e {$mn} min";
+        }
+        return $minutos . " min";
     }
 }
