@@ -1,44 +1,46 @@
 @extends('layout_geral')<?php /* toda estrutura html */ ?>
 @section('content') <?php /* yeld(content) */ ?>
-<h2>Produtos 
-    <button type="button" onclick="modalForm(0,this)" class="btn btn-primary btn-success" data-title="Novas" data-toggle="modal" data-target="#modal-form">Novo</button>
-</h2>
+<h2>Listagem de Pedidos &nbsp;&nbsp;<a href="{{route('atendimento')}}" class="btn btn-success">Novo</a></h2>
 @include('_html.msg')
-@include('produtos.filtro')
+@include('pedidos.filtro')
 <div class="table-responsive">
-    <table id="grid-produtos" class="table table-bordred table-striped">
+    <table id="grid-pedidos" class="table table-bordred table-striped">
         <thead>
-            <th style="width: 20px;">Ativo?</th>
-            <th>Nome</th>
-            <th>Categoria</th>
-            <th>Valor</th>
-            <th>Filial</th>
+            <th style="width: 20px;">Número</th>
+            <th class="a-center" style="width: 110px;">Status</th>
+            <th>Cliente</th>
+            <th style="width: 20px;">Mesa</th>
+            <th style="width: 20px;">Fiado</th>
+            <th>Data</th>
+            <th class="nowrap">Valor</th>
             <th style="width: 100px;">Ações</th>
         </thead>
         <tbody>
             <?php 
             if(count($itens)){ 
                 foreach($itens as $item){ ?>
-            <tr id="reg-{{$item->id}}" class="<?php echo ($item->ativo == '1')?'ativo':'inativo';?>" data-json='{"nome":"<?php echo $item->nome;?>","valor":"<?php echo Helper::valorReais($item->valor);?>","produtotipo_id":"<?php echo $item->produtotipo_id;?>","ativo":"<?php echo $item->ativo;?>","imagem":"<?php echo $item->imagem;?>","filial_id":"<?php echo $item->filial_id;?>","descricao":"<?php echo $item->descricao;?>"}'>
-                <td><?php echo ($item->ativo == '1')?'Sim':'Não';?></td>
-                <td>{{$item->nome}}</td>
-                <td>{{$item->categoria}}</td>
-                <td>{{Helper::valorReais($item->valor)}}</td>
-                <td>{{$item->filial}}</td>
+            <tr id="reg-{{$item->id}}" data-json='{"cliente_nome":"<?php echo $item->cliente_nome;?>","atendente_id":"<?php echo $item->atendente_id;?>","descricao":"<?php echo $item->descricao;?>"}'>
+                <td>#{{str_pad($item->id, 6, "0", STR_PAD_LEFT)}}</td>
+                <td class="nowrap a-center status-<?php echo strtolower(str_replace(' ', '-', $status[$item->status_id]));?>">{{$status[$item->status_id]}}</td>
+                <td class="nowrap">{{$item->cliente_nome}}</td>
+                <td>{{$item->mesa}}</td>
+                <td><?php echo $item->fiado ? 'Sim' : '';?></td>
+                <td class="nowrap">{{Helper::formatarData($item->data_pedido,true)}}</td>
+                <td class="nowrap">{{Helper::valorReais($item->valor_final)}}</td>
                 <td>
                     <form action="" method="post" onsubmit="return confirm('Deseja mesmo excluir?');">
                         <input type="hidden" name="id" value="{{$item->id}}" /> @csrf 
-                        <button onclick="modalForm({{$item->id}},this)" data-target="#modal-form" class="btn btn-primary btn-xs" data-title="Editar" data-toggle="modal" type="button">
-                            <span data-placement="top" data-toggle="tooltip" title="Editar" class="glyphicon glyphicon-pencil"></span>
-                        </button> @if($item->ativo == '1')
-                        <button data-placement="top" onclick="window.location = '{{route('produtos-status')}}?id={{$item->id}}&ativo=0';" 
-                                data-toggle="tooltip" title="Desativar" class="btn btn-warning btn-xs" type="button">
-                            <span class="glyphicon glyphicon-ban-circle" style="padding-right: 2px;"></span>
-                        </button>@endif
-                        <button data-placement="top" data-toggle="tooltip" title="Excluir"
-                                class="btn btn-danger btn-xs" data-title="Excluir" type="submit">
-                            <span class="glyphicon glyphicon-trash" style="padding-right: 2px;"></span>
+                        <button onclick="modalForm({{$item->id}},this)" data-target="#modal-form" class="btn btn-warning btn-xs" data-title="Detalhes" data-toggle="modal" type="button">
+                            <span data-placement="top" data-toggle="tooltip" title="Detalhes" class="glyphicon glyphicon-list-alt"></span>
                         </button>
+                        @if($item->status_id != '0')
+                        <button onclick="modalForm({{$item->id}},this)" data-target="#modal-form" class="btn btn-primary btn-xs" data-title="Editar Status" data-toggle="modal" type="button">
+                            <span data-placement="top" data-toggle="tooltip" title="Editar Status" class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                        <button data-placement="top" data-toggle="tooltip" title="Cancelar"
+                                class="btn btn-danger btn-xs" data-title="Cancelar" type="submit">
+                            <span class="glyphicon glyphicon-trash" style="padding-right: 2px;"></span>
+                        </button>@endif
                     </form>
                 </td>
             </tr>
@@ -129,9 +131,9 @@
     <!-- /.modal-dialog -->
 </div>
 @include('_html.js-grid')
-<script src="{{ asset('js/jquery.maskMoney.js') }}"></script>
+<!--script src="{{ asset('js/jquery.mask.js') }}"></script-->
 <script type="text/javascript">
-$('.input-money').maskMoney({thousands:'', decimal:',', allowZero:true, suffix: ''});
+//$('.mask-date').mask('00/00/0000', {clearIfNotMatch: true});
 function modalForm(id,btn){
     $('#modal-heading span').html($(btn).attr('data-title'));
     //zera o formulario

@@ -26,9 +26,10 @@ Route::middleware([VerificaLogin::class])->group(function () {
     Route::any('/cozinha', [Controllers\PedidosController::class,'cozinha'])->name('cozinha');
     Route::get('/cozinha-status', [Controllers\PedidosController::class,'cozinhaStatus'])->name('cozinha-status');
     Route::get('/mesa-entregue', [Controllers\PedidosController::class,'mesaEntregue'])->name('mesa-entregue');
-    Route::get('/pedidos', [Controllers\PedidosController::class,'index'])->name('pedidos');
+    Route::any('/pedidos', [Controllers\PedidosController::class,'index'])->name('pedidos');
+    Route::post('/pedidos/form', [Controllers\PedidosController::class,'form'])->name('pedidos-form');
     //gerenciar
-    Route::any('/configs', [Controllers\DashboardController::class,'configs'])->name('configs');
+    Route::any('/configs', [Controllers\DashboardController::class,'configs'])->name('gerenciar-configs');
 });
 /* rotas desprotegidas de login */
 Route::any('/login', [Controllers\DashboardController::class,'login']);

@@ -15,30 +15,18 @@
                     Visitante
                 </th>
                 <th style="width: 10px;">
-                    <button onclick="clienteNovo()" type="button" class="btn btn-success btn-height">
+                    <button onclick="clienteNovo()" type="button" data-toggle="tooltip" title="Cadastrar" data-title="Cadastrar" class="btn btn-success btn-height">
                         <i class="fas fa-user-plus"></i>
                     </button>
                 </th>
                 <th style="width: 10px;">
-                    <button onclick="clienteEx()" type="button" class="btn btn-danger btn-height">
+                    <button onclick="clienteEx()" type="button" data-toggle="tooltip" title="Remover" data-title="Remover" class="btn btn-danger btn-height">
                         <i class="fas fa-times-circle"></i>
                     </button>
                 </th>
             </tr>
         </thead>
-        <tbody style="display:none;">
-            <tr><td colspan="4" onclick="clienteUsar(this)" data-id="1">Cliente 1 - 000000</td></tr>
-            <tr>
-                <td colspan="4" onclick="clienteUsar(this)" data-id="2">
-                    Cliente 2 - 11111111
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4" onclick="clienteUsar(this)" data-id="3">
-                    Cliente 3 - 99999999
-                </td>
-            </tr>
-        </tbody>
+        <tbody style="display:none;"></tbody>
     </table>
     <div id="atendimento-cadastro-cliente" style="display: none;">
         <div class="overlay"></div> @csrf
@@ -59,6 +47,7 @@
     </div>
 </div>
 <script type="text/javascript">
+$("[data-toggle=tooltip]").tooltip();
 function clienteEx(){
     preencheCliente('Visitante','');
 }
@@ -66,6 +55,7 @@ function clienteUsar(elem){
     preencheCliente($(elem).html(),$(elem).attr('data-id'));
     $('.table-clientes tbody').hide();
     $('#resumo-fiado').val('0');
+    $('#pesquisar-cliente').val('');
 }
 function preencheCliente(_html,id){
     $('#col-nome-cliente').html(_html).attr('data-cliente-id',id);

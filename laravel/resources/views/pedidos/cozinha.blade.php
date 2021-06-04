@@ -36,7 +36,7 @@ function refreshing(){
     document.location.reload(false);
 }
 //da refresh a cada 5seg
-var contadorR = setInterval(refreshing,5000);
+var contadorR = setInterval(refreshing,<?php echo (int)\Helper::getConfig("tempoat_cozinha");?>000);
 $('.acoes a').on('click',function(){
     clearInterval(contadorR);
 });

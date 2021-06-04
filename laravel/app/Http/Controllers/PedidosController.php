@@ -3,31 +3,58 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
+use App\Models\Cliente;
 use App\Models\Pedido;
 use App\Models\Pedidostatus;
 use App\Models\Pedidoitens;
 use App\Models\Layout;
 use App\Models\Produto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PedidosController extends Controller
 {
+    protected $_filters = [
+        'cliente_nome'=>'like',
+        'mesa',
+        'status_id'
+    ];
     /* listagem (read) se vier id via post é exclusao (delete) */
 
     public function index(Request $request) {
         $id = $request->post('id');
         if($id >0){
             try {
-                Pedido::destroy($id);
-                session()->flash('success', "Registro excluído.");
+                $pedido = Pedido::find($id);
+                $pedido->status_id = 0;
+                $pedido->save();
+                session()->flash('success', "Pedido cancelado.");
             } catch (Exception $ex) {
-                session()->flash('error', 'Não foi possível excluir o registro.');
+                session()->flash('error', 'Não foi possível cancelar o pedido.');
             }
         }
-        $query = Pedido::select('*')
-                ->orderBy('nome')
-                ->paginate(16);
-        return view('pedidos.index', ['resultado' => $query, 'itens' => $query->items()]);
+        $array_filtro = (array)$request->filtro;
+        $query = Pedido::select('*');
+        //filtros
+        if(!isset($array_filtro['data_ini']) || @strlen($array_filtro['data_ini']) == 0){
+            //nao pode deixar sem data inicial
+            $array_filtro['data_ini'] = now()->toDateString();
+        }
+        $query = $this->_filtrar($query,$array_filtro);
+        //datas
+        if(isset($array_filtro['data_ini']) && @strlen($array_filtro['data_ini'])){
+            $query = $query->where(DB::raw('DATE(data_pedido)'),'>=',$array_filtro['data_ini']);
+        }
+        if(isset($array_filtro['data_fim']) && @strlen($array_filtro['data_fim'])){
+            $query = $query->where(DB::raw('DATE(data_pedido)'),'<=',$array_filtro['data_fim']);
+        }
+        //ordenacao e paginacao
+        $query = $query->orderByDesc('id')->paginate(16);
+        $status = ['0'=>'Cancelado'];
+        foreach(Pedidostatus::all() as $row){
+            $status[$row->id] = $row->status;
+        }
+        return view('pedidos.index', ['resultado' => $query, 'itens' => $query->items(),'status'=>$status,'filtro'=>$array_filtro]);
     }
 
     /* form novo registro não vem id, se vier é edição
@@ -66,11 +93,13 @@ class PedidosController extends Controller
             //cria pedido e redireciona para /confirmado
             $pedido_obj = json_decode($request->post('pedido'));
             try{
+                $cliente = Cliente::find($pedido_obj->cliente);
                 $pedido = new Pedido();
                 $pedido->mesa = $pedido_obj->mesa;
                 $pedido->valor_final = $pedido_obj->total;
                 $pedido->fiado = $pedido_obj->fiado;
                 $pedido->cliente = $pedido_obj->cliente;
+                $pedido->cliente_nome = $cliente ? $cliente->nome : 'Visitante';
                 $pedido->status_id = 1;
                 $pedido->filial_id = Usuario::getSessionVar('filiacao');
                 $pedido->atendente_id = Usuario::getSessionVar('id');
@@ -109,6 +138,7 @@ class PedidosController extends Controller
         $fila = Pedido::select('id','mesa','status_id','descricao','data_pedido')
                 ->where('filial_id',Usuario::getSessionVar('filiacao'))
                 ->where('status_id','<',Pedidostatus::status_Entregue)
+                ->where('status_id','<>',0) /*status 0 é cancelado*/
                 ->limit($limite_comandas)->get();
         return view('pedidos.cozinha',['fila'=>$fila,'n_colunas'=>$limite_comandas]);
     }

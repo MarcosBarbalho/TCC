@@ -11,20 +11,21 @@ class Helper{
     * @return bool true|false
     */
     static function comparaNomeRota($str){
-        return strpos($str, \Route::currentRouteName()) !== false;
+        return strpos(\Route::currentRouteName(),$str) !== false;
     }
     /**
      * pega tabela e faz foreach de options html com id e nome
      * @param string $tabela
      */
-    static function formOptions($tabela,$valor=null){
+    static function formOptions($tabela,$valor=null,$valor_label='nome',$orderBy=null){
         if($tabela == 'usuariotipos'){ /*nao exibe os usuarios root*/
-            $query = DB::table($tabela)->where('id','>',1)->orderBy('nome')->get();
+            $query = DB::table($tabela)->where('id','>',1)->orderBy($valor_label)->get();
         }else{
-            $query = DB::table($tabela)->orderBy('nome')->get();
+            $orderBy = $orderBy ? $orderBy : $valor_label;
+            $query = DB::table($tabela)->orderBy($orderBy)->get();
         }
         foreach($query as $item){
-            ?><option <?php echo ($valor == $item->id) ? 'selected' : '';?> value="<?php echo $item->id;?>">- <?php echo $item->nome;?></option><?php
+            ?><option <?php echo ($valor == $item->id) ? 'selected' : '';?> value="<?php echo $item->id;?>">- <?php echo $item->$valor_label;?></option><?php
         }
     }
     static function loginTemNivel($nivel){

@@ -38,27 +38,33 @@
 <script type="text/javascript">
 function resumoConfirma(){
     var cliente = $('#resumo-cliente span').html();
+    var clienteId = parseInt($('#col-nome-cliente').attr('data-cliente-id')) || 0;
+    var vrfiado = parseInt($('#resumo-fiado').val());
     $('#form-fechar-pedido').val('');
-    if(confirm("Fechar pedido para "+cliente+"?")){
-        var pedido = {};//precisa de mesa e carrinho para fechar
-        var mesa = $('#conteudo-mesa').attr('data-mesa');
-        if(mesa.length > 0){
-            if(carrinho_itens.length > 0){
-                pedido["mesa"] = mesa;
-                pedido["produtos"] = carrinho_itens;
-                pedido["cliente"] = parseInt($('#col-nome-cliente').attr('data-cliente-id'));
-                pedido["fiado"] = parseInt($('#resumo-fiado').val());
-                pedido["obs"] = $('#pedido-obs').val();
-                pedido["total"] = resumo_total;
-                var json_pedido = JSON.stringify(pedido);
-                //submit
-                $('#pedido-json').val(json_pedido);
-                $('#form-fechar-pedido').submit();
+    if(vrfiado === 1 && clienteId === 0){
+        alert("Venda fiada para Visitante não permitida!");
+    }else{
+        if(confirm("Fechar pedido para "+cliente+"?")){
+            var pedido = {};//precisa de mesa e carrinho para fechar
+            var mesa = $('#conteudo-mesa').attr('data-mesa');
+            if(mesa.length > 0){
+                if(carrinho_itens.length > 0){
+                    pedido["mesa"] = mesa;
+                    pedido["produtos"] = carrinho_itens;
+                    pedido["cliente"] = clienteId;
+                    pedido["fiado"] = vrfiado;
+                    pedido["obs"] = $('#pedido-obs').val();
+                    pedido["total"] = resumo_total;
+                    var json_pedido = JSON.stringify(pedido);
+                    //submit
+                    $('#pedido-json').val(json_pedido);
+                    $('#form-fechar-pedido').submit();
+                }else{
+                    alert("Escolha um PRODUTO");
+                }
             }else{
-                alert("Escolha um PRODUTO");
+                alert("Escolha uma MESA");
             }
-        }else{
-            alert("Escolha uma MESA");
         }
     }
 }

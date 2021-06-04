@@ -5,7 +5,8 @@
             $pedido = isset($pedidos_mesas[trim($m)]) ? $pedidos_mesas[trim($m)] : false;
             ?>
         <div class="col-xs-6 col-sm-6 col-md-3">
-            <div class="box box-mesa <?php echo ($pedido && $pedido->status_id == 4) ? 'em-processo':'';?> a-center" id="box-mesa-1" onclick="escolheMesa('{{trim($m)}}')">
+            <div class="box box-mesa <?php echo ($pedido && $pedido->status_id == 4) ? 'em-processo':'';?> a-center" 
+                 id="box-mesa-1" <?php if(!$pedido){ ?>onclick="escolheMesa('{{trim($m)}}')" <?php } ?>>
                 <div class="box-txt">Mesa</div>
                 <span class="badge badge-pill badge-dark">{{trim($m)}}</span>
                 <div class="a-center qtde"><?php if($pedido){ 

@@ -25,6 +25,11 @@ class ConfigsSeeder extends Seeder
             'valor' => '4',
         ]);
         DB::table('configs')->insert([
+            'descricao' => 'Tempo de Atualização Tela da Cozinha (segundos)',
+            'chave' => 'tempoat_cozinha',
+            'valor' => '5',
+        ]);
+        DB::table('configs')->insert([
             'descricao' => 'Tamanho da fonte Comandas da Cozinha',
             'chave' => 'tamanho_fonte_cozinha',
             'valor' => '18px',

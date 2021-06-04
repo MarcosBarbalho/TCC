@@ -17,13 +17,14 @@ use App\Models\Usuario;
             <ul class="nav navbar-nav">
                 @if(Helper::loginTemNivel([1,2]))
                 <li <?php echo Helper::comparaNomeRota('home') ? 'class="active"' : '';?>><a href="{{url('/')}}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                <li <?php echo Helper::comparaNomeRota('gerenciar') ? 'class="active"' : '';?> class="dropdown">
+                <li <?php echo (Helper::comparaNomeRota('gerenciar') || Helper::comparaNomeRota('prod-tipos') || Helper::comparaNomeRota('pedidos')) ? 'class="active"' : '';?> class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false"><i class="fas fa-cubes"></i> Gerenciar <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{route('configs')}}">Configurações</a></li>
+                        <li><a href="{{route('gerenciar-configs')}}">Configurações</a></li>
                         <li><a href="{{route('prod-tipos')}}">Tipos de Produtos</a></li>
-                        <li><a href="#">Something else here</a></li>
+                        <li><a href="{{route('pedidos')}}">Pedidos</a></li>
+                        <li><a href="{{route('prod-tipos')}}">Vendas Fiadas</a></li>
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">Relatórios</li>
                         <li><a href="#">Separated link</a></li>
@@ -35,7 +36,7 @@ use App\Models\Usuario;
                 @if(Helper::loginTemNivel([1,2,4]))
                 <li <?php echo Helper::comparaNomeRota('clientes') ? 'class="active"' : '';?>><a href="{{route('clientes')}}"><i class="fas fa-users"></i> Clientes</a></li>
                 <li <?php echo Helper::comparaNomeRota('atendimento') ? 'class="active"' : '';?>><a href="{{route('atendimento')}}"><i class="fas fa-edit"></i> Atendimento</a></li>@endif
-                <li <?php echo Helper::comparaNomeRota('pedidos') ? 'class="active"' : '';?>><a href="{{route('cozinha')}}"><i class="fas fa-shopping-bag"></i> Pedidos</a></li>
+                <li <?php echo Helper::comparaNomeRota('cozinha') ? 'class="active"' : '';?>><a href="{{route('cozinha')}}"><i class="fas fa-shopping-bag"></i> Pedidos</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown-to">

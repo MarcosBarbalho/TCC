@@ -1,6 +1,6 @@
 @extends('layout_geral')<?php /* toda estrutura html */ ?>
 @section('content') <?php /* yeld(content) */ ?>
-<h2 class="a-center">Tipos de Produtos 
+<h2>Tipos de Produtos 
     <button type="button" onclick="modalForm(0,this)" class="btn btn-primary btn-success" data-title="Novas" data-toggle="modal" data-target="#modal-form">Novo</button>
 </h2>
 @include('_html.msg')
