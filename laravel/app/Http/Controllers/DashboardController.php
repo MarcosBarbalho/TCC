@@ -23,6 +23,8 @@ class DashboardController extends Controller
                     $home = '/';//inicial para cozinha
                 }elseif($usuario->usuariotipos_id == 4){
                     $home = '/atendimento';//inicial para atendentes
+                }elseif($usuario->usuariotipos_id == 5){
+                    $home = '/caixa';//inicial para atendentes
                 }
                 return redirect($home);
             }else{

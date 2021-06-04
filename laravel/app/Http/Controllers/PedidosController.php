@@ -9,6 +9,7 @@ use App\Models\Pedidostatus;
 use App\Models\Pedidoitens;
 use App\Models\Layout;
 use App\Models\Produto;
+use App\Models\Caixafluxo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -61,6 +62,16 @@ class PedidosController extends Controller
         $pedido = Pedido::find($request->id);
         $pedido->status_id = $request->status_id;
         $pedido->save();
+        //caixa
+        /*if($pedido->fiado != '1' && $pedido->status_id == Pedidostatus::status_Entregue){
+            $caixa = new Caixafluxo();
+            $caixa->valor = number_format($pedido->valor_final, 2, '.','');
+            $caixa->natureza = "Pedido #".str_pad($pedido->id, 6, "0", STR_PAD_LEFT);
+            $dt = explode(" ", $pedido->data_pedido);
+            $caixa->data_cadastro = $dt[0];
+            $caixa->pedido_id = $pedido->id;
+            $caixa->save();
+        }*/
         return redirect()->back();
     }
     public function itens(Request $request){
@@ -143,7 +154,20 @@ class PedidosController extends Controller
         $pedido = Pedido::find($request->get('pid'));
         $pedido->status_id = Pedidostatus::status_Entregue;
         $pedido->save();
+        //caixa
+        /*if($pedido->fiado != '1'){
+            $caixa = new Caixafluxo();
+            $caixa->valor = number_format($pedido->valor_final, 2, '.','');
+            $caixa->natureza = "Pedido #".str_pad($pedido->id, 6, "0", STR_PAD_LEFT);
+            $caixa->pedido_id = $pedido->id;
+            $caixa->data_cadastro = now()->toDateString();
+            $caixa->save();
+        }*/
         return redirect('/atendimento');
+    }
+    
+    public function fiado(Request $request){
+        
     }
 
     //----------------------------

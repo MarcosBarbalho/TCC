@@ -24,11 +24,10 @@ use App\Models\Usuario;
                         <li><a href="{{route('gerenciar-configs')}}">Configurações</a></li>
                         <li><a href="{{route('prod-tipos')}}">Tipos de Produtos</a></li>
                         <li><a href="{{route('pedidos')}}">Pedidos</a></li>
-                        <li><a href="{{route('prod-tipos')}}">Vendas Fiadas</a></li>
+                        <li><a href="{{route('pedidos-fiados')}}">Pedidos Fiados</a></li>
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">Relatórios</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
+                        <li><a href="#">Fluxo de Caixa</a></li>
                     </ul>
                 </li>
                 <li <?php echo Helper::comparaNomeRota('usuarios') ? 'class="active"' : '';?>><a href="{{url('/usuarios')}}"><i class="fas fa-user"></i> Funcionários</a></li>
@@ -36,7 +35,10 @@ use App\Models\Usuario;
                 @if(Helper::loginTemNivel([1,2,4]))
                 <li <?php echo Helper::comparaNomeRota('clientes') ? 'class="active"' : '';?>><a href="{{route('clientes')}}"><i class="fas fa-users"></i> Clientes</a></li>
                 <li <?php echo Helper::comparaNomeRota('atendimento') ? 'class="active"' : '';?>><a href="{{route('atendimento')}}"><i class="fas fa-edit"></i> Atendimento</a></li>@endif
-                <li <?php echo Helper::comparaNomeRota('cozinha') ? 'class="active"' : '';?>><a href="{{route('cozinha')}}"><i class="fas fa-shopping-bag"></i> Pedidos</a></li>
+                @if(Helper::loginTemNivel([1,2,3,4]))
+                <li <?php echo Helper::comparaNomeRota('cozinha') ? 'class="active"' : '';?>><a href="{{route('cozinha')}}"><i class="fas fa-shopping-bag"></i> Pedidos</a></li>@endif
+                @if(Helper::loginTemNivel([1,2,5]))
+                <li <?php echo Helper::comparaNomeRota('caixa') ? 'class="active"' : '';?>><a href="{{route('caixa')}}"><i class="fas fa-hand-holding-usd"></i> Caixa</a></li>@endif
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown-to">

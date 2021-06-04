@@ -20,6 +20,9 @@ Route::middleware([VerificaLogin::class])->group(function () {
     //tipos de produtos
     Route::any('/prod-tipos', [Controllers\ProdutoTiposController::class,'index'])->name('prod-tipos');
     Route::post('/prod-tipos/form', [Controllers\ProdutoTiposController::class,'form'])->name('prod-tipos-form');
+    //caixa
+    Route::any('/caixa', [Controllers\CaixaController::class,'index'])->name('caixa');
+    Route::post('/caixa/form', [Controllers\CaixaController::class,'form'])->name('caixa-form');
     //atendimento e pedidos
     Route::any('/atendimento', [Controllers\PedidosController::class,'atendimento'])->name('atendimento');
     Route::get('/confirmado', [Controllers\PedidosController::class,'confirmado'])->name('confirmado');
@@ -29,6 +32,7 @@ Route::middleware([VerificaLogin::class])->group(function () {
     Route::any('/pedidos', [Controllers\PedidosController::class,'index'])->name('pedidos');
     Route::post('/pedidos/status', [Controllers\PedidosController::class,'status'])->name('pedidos-status');
     Route::get('/pedidos/itens', [Controllers\PedidosController::class,'itens'])->name('pedidos-itens');
+    Route::any('/pedidos/fiados', [Controllers\PedidosController::class,'fiados'])->name('pedidos-fiados');
     //gerenciar
     Route::any('/configs', [Controllers\DashboardController::class,'configs'])->name('gerenciar-configs');
 });
