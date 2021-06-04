@@ -79,6 +79,24 @@ class CaixaController extends Controller
             session()->flash('error', 'Não foi possível salvar o registro.');
         }
     }
+    
+    public function relatorio(Request $request){
+        $array_filtro = (array)$request->filtro;
+        $query = Caixafluxo::select('*')->orderByDesc('data_cadastro');
+        //filtros
+        if(!isset($array_filtro['data_ini']) || @strlen($array_filtro['data_ini']) == 0){
+            //nao pode deixar sem data inicial
+            $array_filtro['data_ini'] = now()->toDateString();
+        }
+        //datas
+        if(isset($array_filtro['data_ini']) && @strlen($array_filtro['data_ini'])){
+            $query = $query->where(DB::raw('DATE(data_cadastro)'),'>=',$array_filtro['data_ini']);
+        }
+        if(isset($array_filtro['data_fim']) && @strlen($array_filtro['data_fim'])){
+            $query = $query->where(DB::raw('DATE(data_cadastro)'),'<=',$array_filtro['data_fim']);
+        }
+        return view('caixa.relatorio', ['itens' => $query->get(),'filtro'=>$array_filtro]);
+    }
 
     //----------------------------
     public function afterCallAction($method) {

@@ -23,6 +23,7 @@ Route::middleware([VerificaLogin::class])->group(function () {
     //caixa
     Route::any('/caixa', [Controllers\CaixaController::class,'index'])->name('caixa');
     Route::post('/caixa/form', [Controllers\CaixaController::class,'form'])->name('caixa-form');
+    Route::get('/caixa/relatorio', [Controllers\CaixaController::class,'relatorio'])->name('relatorio-caixa');
     //atendimento e pedidos
     Route::any('/atendimento', [Controllers\PedidosController::class,'atendimento'])->name('atendimento');
     Route::get('/confirmado', [Controllers\PedidosController::class,'confirmado'])->name('confirmado');

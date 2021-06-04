@@ -174,6 +174,7 @@ class PedidosController extends Controller
                 $caixa->data_cadastro = $pgto_data;
                 $caixa->save();
                 session()->flash('success', "Pedido quitado.");
+                return redirect()->back();
             } catch (Exception $ex) {
                 session()->flash('error', 'Não foi possível quitar o pedido.');
             }
