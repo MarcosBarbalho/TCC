@@ -48,7 +48,7 @@ use App\Models\Pedido;
         </div>
     </div>
 </div>
-<div class="list-group">
+<!--div class="list-group">
     <a href="#" class="list-group-item list-group-item-action">
         Novos pedidos
         <span class="badge badge-pill badge-dark">10</span>
@@ -65,7 +65,7 @@ use App\Models\Pedido;
         Pedidos suspensos
         <span class="badge badge-pill badge-dark">10</span>
     </a>
-</div>
+</div-->
 @else
 <p>Seu usuário não possui informações para esta área.</p>
 <p>Utilize o menu ao topo para navegar.</p>

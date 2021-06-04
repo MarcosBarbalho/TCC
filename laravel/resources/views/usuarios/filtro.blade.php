@@ -6,7 +6,7 @@
                     <label>Filial</label>
                     <select name="filtro[filiacao]" class="form-control">
                         <option value="">Todas</option>
-                        <?php Helper::formOptions('filiais',$filtro['filiacao']);?>
+                        <?php Helper::formOptions('filiais',@$filtro['filiacao']);?>
                     </select>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                     <label>Tipo</label>
                     <select name="filtro[usuariotipos_id]" class="form-control">
                         <option value="">Todas</option>
-                        <?php Helper::formOptions('usuariotipos',$filtro['usuariotipos_id']);?>
+                        <?php Helper::formOptions('usuariotipos',@$filtro['usuariotipos_id']);?>
                     </select>
                 </div>
             </div>

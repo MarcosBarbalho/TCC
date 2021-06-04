@@ -22,7 +22,7 @@
                     <label>Categoria</label>
                     <select name="filtro[produtotipo_id]" class="form-control">
                         <option value="">Todas</option>
-                        <?php Helper::formOptions('produtotipos',$filtro['produtotipo_id']);?>
+                        <?php Helper::formOptions('produtotipos',@$filtro['produtotipo_id']);?>
                     </select>
                 </div>
             </div>
