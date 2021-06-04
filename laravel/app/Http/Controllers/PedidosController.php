@@ -18,7 +18,8 @@ class PedidosController extends Controller
     protected $_filters = [
         'cliente_nome'=>'like',
         'mesa',
-        'status_id'
+        'status_id',
+        'cliente'
     ];
     /* listagem (read) se vier id via post é exclusao (delete) */
 
@@ -154,20 +155,35 @@ class PedidosController extends Controller
         $pedido = Pedido::find($request->get('pid'));
         $pedido->status_id = Pedidostatus::status_Entregue;
         $pedido->save();
-        //caixa
-        /*if($pedido->fiado != '1'){
-            $caixa = new Caixafluxo();
-            $caixa->valor = number_format($pedido->valor_final, 2, '.','');
-            $caixa->natureza = "Pedido #".str_pad($pedido->id, 6, "0", STR_PAD_LEFT);
-            $caixa->pedido_id = $pedido->id;
-            $caixa->data_cadastro = now()->toDateString();
-            $caixa->save();
-        }*/
         return redirect('/atendimento');
     }
     
-    public function fiado(Request $request){
-        
+    public function fiados(Request $request){
+        $pedido_id = $request->post('pedido_id');
+        $pgto_data = $request->post('pgto_data');
+        if($pedido_id >0 && $pgto_data){
+            try {
+                $pedido = Pedido::find($pedido_id);
+                $pedido->status_id = Pedidostatus::status_Pago;
+                $pedido->save();
+                //lança como entrada
+                $caixa = new Caixafluxo();
+                $caixa->valor = number_format($pedido->valor_final, 2, '.','');
+                $caixa->natureza = "Pedido #".str_pad($pedido->id, 6, "0", STR_PAD_LEFT).' quitado';
+                $caixa->pedido_id = $pedido->id;
+                $caixa->data_cadastro = $pgto_data;
+                $caixa->save();
+                session()->flash('success', "Pedido quitado.");
+            } catch (Exception $ex) {
+                session()->flash('error', 'Não foi possível quitar o pedido.');
+            }
+        }
+        $query = Pedido::select(['id','valor_final','cliente','cliente_nome','atendente_id','data_pedido'])
+                ->where('status_id',Pedidostatus::status_Entregue)
+                ->where('fiado','1');
+        $query = $this->_filtrar($query,$request->filtro);
+        $query = $query->paginate(16);
+        return view('pedidos.fiados', ['resultado' => $query, 'itens' => $query->items(),'filtro'=>$request->filtro]);
     }
 
     //----------------------------
