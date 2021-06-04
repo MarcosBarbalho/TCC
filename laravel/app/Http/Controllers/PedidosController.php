@@ -57,36 +57,25 @@ class PedidosController extends Controller
         return view('pedidos.index', ['resultado' => $query, 'itens' => $query->items(),'status'=>$status,'filtro'=>$array_filtro]);
     }
 
-    /* form novo registro não vem id, se vier é edição
-     * (create/update) */
-
-    public function form(Request $request) {
-        $post = $request->all();
-        try {
-            if ($post['id'] > 0) {
-                //update
-                $pedido = Pedido::find($post['id']);
-                if($pedido){
-                    $pedido->nome = $post['nome'];
-                    $pedido->cpf = $post['cpf'];
-                    $pedido->save();
-                    session()->flash('success', "Pedido alterado com sucesso.");
-                    return redirect('clientes');
-                }
-            } else {
-                //create
-                $pedido = new Pedido();
-                $pedido->nome = $post['nome'];
-                $pedido->cpf = $post['cpf'];
-                $pedido->data_cadastro = now();
-                $pedido->save();
-                session()->flash('success', "Pedido cadastrado com sucesso.");
-                return redirect('clientes');
-            }
-        } catch (Exception $ex) {
-            session()->flash('error', 'Não foi possível salvar o registro.');
-        }
+    public function status(Request $request){
+        $pedido = Pedido::find($request->id);
+        $pedido->status_id = $request->status_id;
+        $pedido->save();
+        return redirect()->back();
     }
+    public function itens(Request $request){
+        $atendente = Usuario::find($request->atd);
+        $itens='';
+        $query = Pedidoitens::select(['produto_nome','quantidade'])->where('pedido_id',$request->pid)->get();
+        foreach($query as $row){
+            $itens .= "<li>{$row->quantidade}x {$row->produto_nome}</li>";
+        }
+        $resultado = new \stdClass();
+        $resultado->atendente = $atendente->nome;
+        $resultado->itens = $itens;
+        return json_encode($resultado);
+    }
+    
     ## ATENDIMENTO ##
     public function atendimento(Request $request){
         if ($request->isMethod('post')) {

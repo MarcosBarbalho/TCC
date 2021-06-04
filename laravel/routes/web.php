@@ -27,7 +27,8 @@ Route::middleware([VerificaLogin::class])->group(function () {
     Route::get('/cozinha-status', [Controllers\PedidosController::class,'cozinhaStatus'])->name('cozinha-status');
     Route::get('/mesa-entregue', [Controllers\PedidosController::class,'mesaEntregue'])->name('mesa-entregue');
     Route::any('/pedidos', [Controllers\PedidosController::class,'index'])->name('pedidos');
-    Route::post('/pedidos/form', [Controllers\PedidosController::class,'form'])->name('pedidos-form');
+    Route::post('/pedidos/status', [Controllers\PedidosController::class,'status'])->name('pedidos-status');
+    Route::get('/pedidos/itens', [Controllers\PedidosController::class,'itens'])->name('pedidos-itens');
     //gerenciar
     Route::any('/configs', [Controllers\DashboardController::class,'configs'])->name('gerenciar-configs');
 });

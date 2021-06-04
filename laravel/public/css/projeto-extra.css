@@ -27,3 +27,4 @@
 #grid-pedidos .status-pronto{background-color: #caf7ad;}
 #grid-pedidos .status-entregue{}
 #grid-pedidos .status-cancelado{background-color: #e0cdec;}
+ul.modal-ul{padding-left: 1em;}

@@ -19,21 +19,21 @@
             <?php 
             if(count($itens)){ 
                 foreach($itens as $item){ ?>
-            <tr id="reg-{{$item->id}}" data-json='{"cliente_nome":"<?php echo $item->cliente_nome;?>","atendente_id":"<?php echo $item->atendente_id;?>","descricao":"<?php echo $item->descricao;?>"}'>
-                <td>#{{str_pad($item->id, 6, "0", STR_PAD_LEFT)}}</td>
+            <tr id="reg-{{$item->id}}" data-json='{"cliente_nome":"<?php echo $item->cliente_nome;?>","status_id":"<?php echo $item->status_id;?>","atendente_id":"<?php echo $item->atendente_id;?>","descricao":"<?php echo $item->descricao;?>"}'>
+                <td class="td-id">#{{str_pad($item->id, 6, "0", STR_PAD_LEFT)}}</td>
                 <td class="nowrap a-center status-<?php echo strtolower(str_replace(' ', '-', $status[$item->status_id]));?>">{{$status[$item->status_id]}}</td>
-                <td class="nowrap">{{$item->cliente_nome}}</td>
+                <td class="td-cliente nowrap">{{$item->cliente_nome}}</td>
                 <td>{{$item->mesa}}</td>
                 <td><?php echo $item->fiado ? 'Sim' : '';?></td>
                 <td class="nowrap">{{Helper::formatarData($item->data_pedido,true)}}</td>
-                <td class="nowrap">{{Helper::valorReais($item->valor_final)}}</td>
+                <td class="td-total nowrap">{{Helper::valorReais($item->valor_final)}}</td>
                 <td>
                     <form action="" method="post" onsubmit="return confirm('Deseja mesmo excluir?');">
                         <input type="hidden" name="id" value="{{$item->id}}" /> @csrf 
-                        <button onclick="modalForm({{$item->id}},this)" data-target="#modal-form" class="btn btn-warning btn-xs" data-title="Detalhes" data-toggle="modal" type="button">
+                        <button onclick="modalInfo({{$item->id}},this)" data-target="#modal-info" class="btn btn-warning btn-xs" data-title="Detalhes" data-toggle="modal" type="button">
                             <span data-placement="top" data-toggle="tooltip" title="Detalhes" class="glyphicon glyphicon-list-alt"></span>
                         </button>
-                        @if($item->status_id != '0')
+                        @if($item->status_id != '0' && Helper::loginTemNivel([1,2]))
                         <button onclick="modalForm({{$item->id}},this)" data-target="#modal-form" class="btn btn-primary btn-xs" data-title="Editar Status" data-toggle="modal" type="button">
                             <span data-placement="top" data-toggle="tooltip" title="Editar Status" class="glyphicon glyphicon-pencil"></span>
                         </button>
@@ -63,57 +63,19 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </button>
-                <h4 class="modal-title custom_align" id="modal-heading"><span>Editar</span> Informações</h4>
+                <h4 class="modal-title custom_align" id="modal-heading"><span>Alterar</span></h4>
             </div>
-            <form action="{{route('produtos-form')}}" method="post" enctype="multipart/form-data"> @csrf
+            <form action="{{route('pedidos-status')}}" method="post"> @csrf
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-xs-6">
+                        <div class="col-xs-6" id="edit-descricao">
+                            <p id="p-modal-pedido"></p>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
                             <div class="form-group">
-                                <select required id="form-ativo" class="form-control" name="ativo">
-                                    <option style="color: #9a9a9a;" value="">Ativo?*</option>
-                                    <option value="0">- Não</option>
-                                    <option value="1">- Sim</option>
+                                <select required id="form-status_id" class="form-control" name="status_id">
+                                    <?php Helper::formOptions('pedidostatus',null,'status','id');?>
                                 </select>
-                            </div>
-                        </div>
-                        <div class="col-xs-6">
-                            <div class="form-group">
-                                <select required id="form-filial_id" class="form-control" name="filial_id">
-                                    <option style="color: #9a9a9a;" value="">Filial*</option>
-                                    <?php Helper::formOptions('filiais');?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <input required id="form-nome" name="nome" class="form-control " type="text" placeholder="Nome*"/>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <select required id="form-produtotipo_id" class="form-control" name="produtotipo_id">
-                                    <option style="color: #9a9a9a;" value="">Categoria*</option>
-                                    <?php Helper::formOptions('produtotipos');?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-xs-6">
-                            <div class="form-group">
-                                <label>Valor*:</label>
-                                <input required id="form-valor" name="valor" class="form-control input-money" type="text" placeholder="0,00"/>
-                            </div>
-                        </div>
-                        <div class="col-xs-6">
-                            <div class="form-group">
-                                <label>Foto: </label>
-                                <input type="file" name="imagem" class="form-control"/>
-                                <small id="obs-img">Mantenha o campo em branco para não alterar a imagem atual</small>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <input id="form-descricao" name="descricao" class="form-control " type="text" placeholder="Descrição"/>
                             </div>
                         </div>
                         <div class="clearfix"></div>
@@ -130,29 +92,81 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+<div class="modal fade" id="modal-info" tabindex="-2" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+                <h4 class="modal-title custom_align" id="modal-heading"><span>Alterar</span></h4>
+            </div>
+            <div class="modal-body">
+                <div id="modal-body-loading">Carregando informações...</div>
+                <div class="row" id="modal-body-detalhes" style="display: none;">
+                    <div class="col-xs-6">
+                        <ul class="modal-ul" id="pedido-itens-modal"></ul>
+                        <i id="pedido-infor-obs"></i>
+                    </div>
+                    <div class="col-xs-6">
+                        <p>Pedido <b id="pedido-infor-id"></b></p>
+                        <p>Cliente <b id="pedido-infor-cliente"></b></p>
+                        <p>Total <b id="pedido-infor-total"></b></p>
+                        <p>Atendente <b id="pedido-infor-atendente"></b></p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 @include('_html.js-grid')
 <!--script src="{{ asset('js/jquery.mask.js') }}"></script-->
 <script type="text/javascript">
 //$('.mask-date').mask('00/00/0000', {clearIfNotMatch: true});
 function modalForm(id,btn){
     $('#modal-heading span').html($(btn).attr('data-title'));
-    //zera o formulario
-    $('#modal-form input[type=text]').val('');
-    $('#modal-form select').val('');
-    $('#form-id').val('');
-    $('#obs-img').hide();
     if(id > 0){
+        $('#p-modal-pedido').html("Pedido <b>"+$('#reg-'+id+" .td-id").html()+"</b> de "+$('#reg-'+id+" .td-cliente").html());
         //se tiver id passado, pega o json na <tr> e usa pra preencher
         var str = $('#reg-'+id).attr('data-json');
         var obj = JSON.parse(str);
-        $('#form-nome').val(obj.nome);
-        $('#form-ativo').val(obj.ativo);
-        $('#form-filial_id').val(obj.filial_id);
-        $('#form-produtotipo_id').val(obj.produtotipo_id);
-        $('#form-valor').val(obj.valor);
-        $('#form-descricao').val(obj.descricao);
+        $('#form-status_id').val(obj.status_id);
         $('#form-id').val(id);
         $('#obs-img').show();
+    }
+}
+function modalInfo(id,btn){
+    $('#modal-heading span').html($(btn).attr('data-title'));
+    $('#modal-body-loading').show();
+    $('#modal-body-detalhes').hide();
+    if(id > 0){
+        var str = $('#reg-'+id).attr('data-json');
+        var obj = JSON.parse(str);
+        var itens = '';
+        var atendente = '';
+        $.ajax({
+            type: 'GET',
+            url: "{{route('pedidos-itens')}}?pid="+id+"&atd="+obj.atendente_id,
+            dataType: 'JSON',
+            success:function(data){
+                itens = data.itens;
+                atendente = data.atendente;
+                $('#modal-body-loading').hide();
+                $('#modal-body-detalhes').show();
+                $('#pedido-infor-id').html($('#reg-'+id+" .td-id").html());
+                $('#pedido-infor-cliente').html($('#reg-'+id+" .td-cliente").html());
+                $('#pedido-infor-total').html($('#reg-'+id+" .td-total").html());
+                $('#pedido-infor-obs').html(obj.descricao);
+                $('#pedido-infor-atendente').html(atendente);
+                $('#pedido-itens-modal').html(itens);
+            },
+            error:function(){
+              alert('Erro');
+            }
+        });
     }
 }
 </script>
