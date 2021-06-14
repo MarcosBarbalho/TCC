@@ -43,7 +43,6 @@ class CaixaController extends Controller
                 $pedidos_baixa[] = $row->pedido_id;
             }
         }
-        dd($pedidos_baixa);
         $pedidos = Pedido::select(['id','mesa','valor_final'])
                 ->where('fiado',0)
                 ->where(DB::raw('DATE(data_pedido)'),now()->toDateString())
